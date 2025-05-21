@@ -53,33 +53,14 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ----- DATA LOADING AND PREPARATION -----
-
-@st.cache_data
-def load_default_data():
-    """Load the default QALY data embedded in the app"""
-    data = {
-        "ID": ["BP1", "BP2", "BP3", "BP4", "BP5", "LDL1", "LDL2", "LDL3"],
-        "Disease": ["Hypertension", "Hypertension", "Hypertension", "Hypertension", "Hypertension", 
-                   "Hypercholesterolemia", "Hypercholesterolemia", "Hypercholesterolemia"],
-        "Intervention": ["Thiazide diuretics", "ACE Inhibitors", "ARBs", "Calcium Channel Blockers", "Beta Blockers", 
-                        "Statins", "Ezetimibe", "PCSK9"],
-        "Population": [5000, 4000, 10000, 12000, 4000, 14000, 1000, 100],
-        "Non-treated Pop": [3981, 3184, 7962, 9554, 3184, 11672, 834, 83],
-        "Treated Pop": [4485, 3654, 9135, 10862, 3555, 12789, 905, 92],
-        "Avg QAlY Gain": [1.31, 1.49, 1.58, 1.23, 1.05, 1.41, 1.14, 1.67],
-        "Tot QALY Gain": [7699, 7059, 18489, 17809, 5049, 22061, 1295, 186],
-        "Cost": [12, 72, 72, 60, 60, 54, 120, 7200]
-    }
-    return pd.DataFrame(data)
-
+# ----- DATA PREPARATION -----
 @st.cache_data
 def process_data(df):
     """Process the dataframe to add calculated metrics"""
     # Calculate additional metrics
     df['QALY per 1000 People'] = (df['Tot QALY Gain'] * 1000) / df['Population']
     df['Cost per QALY'] = df['Cost'] / df['Avg QAlY Gain']
-    df['Treatment Rate %'] = (df['Treated Pop'] / df['Population']) * 100
+    df['Survival Rate %'] = (df['Treated Pop'] / df['Population']) * 100
     df['Intervention Label'] = df['Disease'] + ': ' + df['Intervention']
     df['Total Cost (Thousands)'] = (df['Cost'] * df['Treated Pop']) / 1000
     
@@ -100,36 +81,14 @@ def render_header():
     with col1:
         st.markdown('<div class="main-header">QALY Analysis Dashboard</div>', unsafe_allow_html=True)
         st.markdown("""
-        This dashboard analyzes Quality-Adjusted Life Year (QALY) data across different medical interventions.
+        This dashboard analyzes Quality-Adjusted Life Year (QALY) data across different medical interventions for a 10-year treatment span.
+
         Use the tabs below to explore various visualizations and insights.
         """)
     
     with col2:
         st.write("")
         #upload_data()
-
-def upload_data():
-    """Allow users to upload their own CSV data"""
-    uploaded_file = st.file_uploader("Upload your own QALY data (CSV)", type="csv", help="Upload a CSV file with the same column structure as the default data",key = "file1")
-    
-    if uploaded_file is not None:
-        try:
-            df = pd.read_csv(uploaded_file)
-            required_columns = ["ID", "Disease", "Intervention", "Population", "Non-treated Pop", 
-                                "Treated Pop", "Avg QAlY Gain", "Tot QALY Gain", "Cost"]
-            
-            # Check if all required columns are present
-            missing_cols = [col for col in required_columns if col not in df.columns]
-            if missing_cols:
-                st.error(f"Missing required columns: {', '.join(missing_cols)}")
-                return load_default_data()
-            
-            return df
-        except Exception as e:
-            st.error(f"Error loading data: {e}")
-            return load_default_data()
-    else:
-        return load_default_data()
 
 def display_key_metrics(df):
     """Display key summary metrics"""
@@ -388,22 +347,22 @@ def create_cost_effectiveness_chart(df):
     return fig
 
 def create_treatment_rate_chart(df):
-    """Bar chart showing treatment rates by intervention"""
+    """Bar chart showing Survival rates by intervention"""
     fig = px.bar(
         df,
         x='Intervention Label',
-        y='Treatment Rate %',
+        y='Survival Rate %',
         color='Disease',
         color_discrete_map=dict(zip(df['Disease'].unique(), df['Disease Color'].unique())),
-        labels={'Treatment Rate %': 'Treatment Rate (%)', 'Intervention Label': 'Intervention'},
-        title='Treatment Rates by Intervention',
+        labels={'Survival Rate %': 'Survival  Rate (%)', 'Intervention Label': 'Intervention'},
+        title='Survival  Rates by Intervention',
         height=500,
-        text='Treatment Rate %'
+        text='Survival Rate %'
     )
     
     fig.update_layout(
         xaxis_title='Intervention',
-        yaxis_title='Treatment Rate (%)',
+        yaxis_title='Survival  Rate (%)',
         legend_title='Disease Category',
         font=dict(family="Arial", size=12),
         hovermode="x unified",
@@ -413,7 +372,7 @@ def create_treatment_rate_chart(df):
     fig.update_traces(
         texttemplate='%{text:.1f}%',
         textposition='outside',
-        hovertemplate='<b>%{x}</b><br>Treatment Rate: %{y:.1f}%<extra></extra>'
+        hovertemplate='<b>%{x}</b><br>Survival Rate: %{y:.1f}%<extra></extra>'
     )
     
     fig.update_xaxes(tickangle=45)
@@ -528,7 +487,7 @@ def display_data_table(df):
     display_columns = [
         'ID', 'Disease', 'Intervention', 'Population', 'Treated Pop', 
         'Avg QAlY Gain', 'Tot QALY Gain', 'Cost', 'QALY per 1000 People', 
-        'Cost per QALY', 'Treatment Rate %'
+        'Cost per QALY', 'Survival Rate %'
     ]
     
     # Show the data table with calculated metrics
@@ -541,7 +500,7 @@ def display_data_table(df):
             'Cost': '${:.2f}',
             'QALY per 1000 People': '{:.2f}',
             'Cost per QALY': '${:.2f}',
-            'Treatment Rate %': '{:.1f}%'
+            'Survival Rate %': '{:.1f}%'
         }),
         height=400,
         use_container_width=True
@@ -623,7 +582,7 @@ def main():
                     "Avg QAlY Gain",
                     "Cost per QALY",
                     "QALY per 1000 People",
-                    "Treatment Rate %"
+                    "Survival Rate %"
                 ],
                 index=0
             )
@@ -640,7 +599,7 @@ def main():
             "Avg QAlY Gain": "Average QALY Gain per Person",
             "Cost per QALY": "Cost per QALY ($)",
             "QALY per 1000 People": "QALY per 1,000 People",
-            "Treatment Rate %": "Treatment Rate (%)"
+            "Survival Rate %": "Survival Rate (%)"
         }
         
         custom_fig = px.bar(
@@ -670,11 +629,11 @@ def main():
                 textposition='outside',
                 hovertemplate='<b>%{x}</b><br>Cost per QALY: $%{y:.2f}<extra></extra>'
             )
-        elif selected_metric == "Treatment Rate %":
+        elif selected_metric == "Survival Rate %":
             custom_fig.update_traces(
                 texttemplate='%{text:.1f}%',
                 textposition='outside',
-                hovertemplate='<b>%{x}</b><br>Treatment Rate: %{y:.1f}%<extra></extra>'
+                hovertemplate='<b>%{x}</b><br>Survival Rate: %{y:.1f}%<extra></extra>'
             )
         else:
             custom_fig.update_traces(
@@ -687,7 +646,7 @@ def main():
         
         st.plotly_chart(custom_fig, use_container_width=True)
         
-        # Treatment Rate Chart
+        # Survival Rate Chart
         st.plotly_chart(create_treatment_rate_chart(filtered_df), use_container_width=True)
     
     # Tab 4: Data
@@ -710,7 +669,7 @@ def main():
         | Cost | Cost per person for the intervention |
         | QALY per 1000 People | QALY gain standardized to 1,000 people |
         | Cost per QALY | Cost effectiveness ratio |
-        | Treatment Rate % | Percentage of eligible population receiving treatment |
+        | Survival Rate % | Percentage of initial population who survived |
         """)
 
 if __name__ == "__main__":
