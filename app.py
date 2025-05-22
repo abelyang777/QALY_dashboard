@@ -58,9 +58,9 @@ st.markdown("""
 def process_data(df):
     """Process the dataframe to add calculated metrics"""
     # Calculate additional metrics
-    df['QALY per 1000 People'] = (df['Tot QALY Gain'] * 1000) / df['Population']
+    df['QALY per 1000 People'] = (df['Tot QALY Gain'] * 1000) / df['Patient']
     df['Cost per QALY'] = df['Cost'] / df['Avg QAlY Gain']
-    df['Survival Rate %'] = (df['Treated Pop'] / df['Population']) * 100
+    df['Survival Rate %'] = (df['Treated Pop'] / df['Patient']) * 100
     df['Intervention Label'] = df['Disease'] + ': ' + df['Intervention']
     df['Total Cost (Thousands)'] = (df['Cost'] * df['Treated Pop']) / 1000
     
@@ -152,10 +152,10 @@ def create_total_qaly_chart(df):
     return fig
 
 def create_bubble_chart(df):
-    """Bubble chart for population size vs QALY gain"""
+    """Bubble chart for Patient size vs QALY gain"""
     fig = px.scatter(
         df,
-        x='Population',
+        x='Patient',
         y='Avg QAlY Gain',
         size='Tot QALY Gain',
         color='Disease',
@@ -163,16 +163,16 @@ def create_bubble_chart(df):
         hover_name='Intervention',
         size_max=60,
         labels={
-            'Population': 'Population Size',
+            'Patient': 'Patient Size',
             'Avg QAlY Gain': 'QALY Gain per Person',
             'Tot QALY Gain': 'Total QALY Gain'
         },
-        title='Population Size vs QALY Gain per Person',
+        title='Patient Size vs QALY Gain per Person',
         height=500
     )
     
     fig.update_layout(
-        xaxis_title='Population Size',
+        xaxis_title='Patient Size',
         yaxis_title='QALY Gain per Person',
         legend_title='Disease Category',
         font=dict(family="Arial", size=12),
@@ -181,7 +181,7 @@ def create_bubble_chart(df):
     )
     
     fig.update_traces(
-        hovertemplate='<b>%{hovertext}</b><br>Population: %{x:,}<br>QALY Gain per Person: %{y:.2f}<br>Total QALY Gain: %{marker.size:,.0f}<extra></extra>'
+        hovertemplate='<b>%{hovertext}</b><br>Patient: %{x:,}<br>QALY Gain per Person: %{y:.2f}<br>Total QALY Gain: %{marker.size:,.0f}<extra></extra>'
     )
     
     return fig
@@ -485,7 +485,7 @@ def display_data_table(df):
     
     # Define columns to display in the data table
     display_columns = [
-        'ID', 'Disease', 'Intervention', 'Population', 'Treated Pop', 
+        'ID', 'Disease', 'Intervention', 'Patient', 'Treated Pop', 
         'Avg QAlY Gain', 'Tot QALY Gain', 'Cost', 'QALY per 1000 People', 
         'Cost per QALY', 'Survival Rate %'
     ]
@@ -493,7 +493,7 @@ def display_data_table(df):
     # Show the data table with calculated metrics
     st.dataframe(
         df[display_columns].style.format({
-            'Population': '{:,.0f}',
+            'Patient': '{:,.0f}',
             'Treated Pop': '{:,.0f}',
             'Avg QAlY Gain': '{:.2f}',
             'Tot QALY Gain': '{:,.0f}',
@@ -661,15 +661,15 @@ def main():
         | ID | Unique identifier for each intervention |
         | Disease | Category of disease being treated |
         | Intervention | Specific medical intervention |
-        | Population | Total population eligible for intervention |
-        | Non-treated Pop | Population not receiving treatment |
-        | Treated Pop | Population receiving treatment |
+        | Patient | Total Patient eligible for intervention |
+        | Non-treated Pop | Patient not receiving treatment |
+        | Treated Pop | Patient receiving treatment |
         | Avg QALY Gain | Average Quality-Adjusted Life Year gain per person |
-        | Tot QALY Gain | Total QALY gain across the treated population |
+        | Tot QALY Gain | Total QALY gain across the treated Patient |
         | Cost | Cost per person for the intervention |
         | QALY per 1000 People | QALY gain standardized to 1,000 people |
         | Cost per QALY | Cost effectiveness ratio |
-        | Survival Rate % | Percentage of initial population who survived |
+        | Survival Rate % | Percentage of initial Patient who survived |
         """)
 
 if __name__ == "__main__":

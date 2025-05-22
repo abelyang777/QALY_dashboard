@@ -1,4 +1,4 @@
-ID,Disease,Intervention,Population,Non-treated Pop,Treated Pop,Avg QAlY Gain,Tot QALY Gain,Cost
+ID,Disease,Intervention,Patient,Non-treated Pop,Treated Pop,Avg QAlY Gain,Tot QALY Gain,Cost
 BP1,Hypertension,Thiazide diuretics,5000,3981,4485,1.31,7699,120
 BP2,Hypertension,ACE Inhibitors,4000,3184,3654,1.49,7059,720
 BP3,Hypertension,ARBs,10000,7962,9135,1.58,18489,720
