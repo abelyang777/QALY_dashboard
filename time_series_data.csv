@@ -1,0 +1,71 @@
+Program ID,Program Name,Disease,Intervention,Year,Date,Cumulative QALYs,Annual QALYs
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,1,2020-05-27 17:49:39.582549,80.23,80.23
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,2,2021-05-27 17:49:39.582549,141.57,79.98
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,3,2022-05-27 17:49:39.582549,220.51,97.32
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,4,2023-05-27 17:49:39.582549,316.15,131.38
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,5,2024-05-26 17:49:39.582549,353.06,106.69
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,6,2025-05-26 17:49:39.582549,502.93,194.97
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,7,2026-05-26 17:49:39.582549,472.12,102.56
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,8,2027-05-26 17:49:39.582549,682.49,251.34
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,9,2028-05-25 17:49:39.582549,571.08,78.34
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,10,2029-05-25 17:49:39.582549,817.4,263.07
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,1,2020-05-27 17:49:39.582549,71.23,71.23
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,2,2021-05-27 17:49:39.582549,127.49,71.02
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,3,2022-05-27 17:49:39.582549,212.02,99.08
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,4,2023-05-27 17:49:39.582549,280.0,110.58
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,5,2024-05-26 17:49:39.582549,392.19,166.3
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,6,2025-05-26 17:49:39.582549,492.53,210.17
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,7,2026-05-26 17:49:39.582549,495.02,156.18
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,8,2027-05-26 17:49:39.582549,494.96,99.66
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,9,2028-05-25 17:49:39.582549,559.23,107.45
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,10,2029-05-25 17:49:39.582549,590.66,82.41
+BP3,ARBs,Hypertension,ARBs,1,2020-05-27 17:49:39.582549,166.9,166.9
+BP3,ARBs,Hypertension,ARBs,2,2021-05-27 17:49:39.582549,314.29,166.38
+BP3,ARBs,Hypertension,ARBs,3,2022-05-27 17:49:39.582549,534.3,238.47
+BP3,ARBs,Hypertension,ARBs,4,2023-05-27 17:49:39.582549,851.05,407.31
+BP3,ARBs,Hypertension,ARBs,5,2024-05-26 17:49:39.582549,970.43,378.79
+BP3,ARBs,Hypertension,ARBs,6,2025-05-26 17:49:39.582549,998.14,258.58
+BP3,ARBs,Hypertension,ARBs,7,2026-05-26 17:49:39.582549,1467.38,579.91
+BP3,ARBs,Hypertension,ARBs,8,2027-05-26 17:49:39.582549,1526.02,490.63
+BP3,ARBs,Hypertension,ARBs,9,2028-05-25 17:49:39.582549,1855.39,672.09
+BP3,ARBs,Hypertension,ARBs,10,2029-05-25 17:49:39.582549,1804.13,472.93
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,1,2020-05-27 17:49:39.582549,149.41,149.41
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,2,2021-05-27 17:49:39.582549,324.6,182.13
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,3,2022-05-27 17:49:39.582549,436.24,151.29
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,4,2023-05-27 17:49:39.582549,731.19,303.77
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,5,2024-05-26 17:49:39.582549,946.17,376.28
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,6,2025-05-26 17:49:39.582549,1171.7,459.34
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,7,2026-05-26 17:49:39.582549,1310.0,455.17
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,8,2027-05-26 17:49:39.582549,1564.35,567.05
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,9,2028-05-25 17:49:39.582549,1920.16,780.39
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,10,2029-05-25 17:49:39.582549,1893.79,611.54
+BP5,Beta Blockers,Hypertension,Beta Blockers,1,2020-05-27 17:49:39.582549,46.27,46.27
+BP5,Beta Blockers,Hypertension,Beta Blockers,2,2021-05-27 17:49:39.582549,100.43,60.04
+BP5,Beta Blockers,Hypertension,Beta Blockers,3,2022-05-27 17:49:39.582549,161.26,80.48
+BP5,Beta Blockers,Hypertension,Beta Blockers,4,2023-05-27 17:49:39.582549,165.41,44.23
+BP5,Beta Blockers,Hypertension,Beta Blockers,5,2024-05-26 17:49:39.582549,278.54,116.97
+BP5,Beta Blockers,Hypertension,Beta Blockers,6,2025-05-26 17:49:39.582549,266.53,64.57
+BP5,Beta Blockers,Hypertension,Beta Blockers,7,2026-05-26 17:49:39.582549,377.02,134.66
+BP5,Beta Blockers,Hypertension,Beta Blockers,8,2027-05-26 17:49:39.582549,401.89,119.15
+BP5,Beta Blockers,Hypertension,Beta Blockers,9,2028-05-25 17:49:39.582549,466.35,143.21
+BP5,Beta Blockers,Hypertension,Beta Blockers,10,2029-05-25 17:49:39.582549,440.51,76.98
+LDL1,Statins,Hypercholesterolemia,Statins,1,2020-05-27 17:49:39.582549,229.95,229.95
+LDL1,Statins,Hypercholesterolemia,Statins,2,2021-05-27 17:49:39.582549,406.58,230.09
+LDL1,Statins,Hypercholesterolemia,Statins,3,2022-05-27 17:49:39.582549,586.23,233.25
+LDL1,Statins,Hypercholesterolemia,Statins,4,2023-05-27 17:49:39.582549,825.6,296.14
+LDL1,Statins,Hypercholesterolemia,Statins,5,2024-05-26 17:49:39.582549,1053.22,347.26
+LDL1,Statins,Hypercholesterolemia,Statins,6,2025-05-26 17:49:39.582549,1276.41,393.97
+LDL1,Statins,Hypercholesterolemia,Statins,7,2026-05-26 17:49:39.582549,1242.68,183.76
+LDL1,Statins,Hypercholesterolemia,Statins,8,2027-05-26 17:49:39.582549,1833.76,598.34
+LDL1,Statins,Hypercholesterolemia,Statins,9,2028-05-25 17:49:39.582549,2216.25,804.34
+LDL1,Statins,Hypercholesterolemia,Statins,10,2029-05-25 17:49:39.582549,2056.42,468.03
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,1,2020-05-27 17:49:39.582549,12.05,12.05
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,2,2021-05-27 17:49:39.582549,25.05,14.69
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,3,2022-05-27 17:49:39.582549,32.31,11.59
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,4,2023-05-27 17:49:39.582549,45.3,14.22
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,5,2024-05-26 17:49:39.582549,69.9,28.46
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,6,2025-05-26 17:49:39.582549,65.72,13.92
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,7,2026-05-26 17:49:39.582549,107.28,45.12
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,8,2027-05-26 17:49:39.582549,88.01,15.49
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,9,2028-05-25 17:49:39.582549,106.27,23.39
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,10,2029-05-25 17:49:39.582549,106.51,13.27

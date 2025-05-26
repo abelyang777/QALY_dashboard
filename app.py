@@ -2,482 +2,638 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import numpy as np
+import random
 from datetime import datetime, timedelta
 import uuid
-import numpy as np
 
 # Page configuration
 st.set_page_config(
-    page_title="QALY Impact Token Dashboard",
+    page_title="QALY NFT Management Platform",
     page_icon="🏥",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Initialize session state for data persistence
-if 'qaly_nfts' not in st.session_state:
-    # Demo QALY NFT data
-    st.session_state.qaly_nfts = pd.DataFrame({
-        'NFT_ID': ['QTK-001', 'QTK-002', 'QTK-003', 'QTK-004', 'QTK-005', 'QTK-006', 
-                   'QTK-007', 'QTK-008', 'QTK-009', 'QTK-010', 'QTK-011', 'QTK-012'],
-        'Program_Name': ['HeartHealth2025', 'StopHIVNow', 'LDLFix', 'DiabetesCare+', 
-                        'HeartHealth2025', 'VaxProtect', 'StopHIVNow', 'LungClear', 
-                        'DiabetesCare+', 'HeartHealth2025', 'LDLFix', 'VaxProtect'],
-        'Disease': ['Hypertension', 'HIV', 'Hypercholesterolemia', 'Type 2 Diabetes',
-                   'Hypertension', 'Influenza', 'HIV', 'COPD', 
-                   'Type 2 Diabetes', 'Hypertension', 'Hypercholesterolemia', 'Influenza'],
-        'Intervention': ['Thiazide', 'ART', 'Statin', 'Metformin',
-                        'ACE Inhibitor', 'Vaccination', 'PrEP', 'Bronchodilator',
-                        'Insulin', 'Beta Blocker', 'PCSK9 Inhibitor', 'Vaccination'],
-        'QALY_Value': [1.25, 3.40, 0.75, 2.10, 1.45, 0.95, 2.80, 1.60, 2.35, 1.30, 0.85, 0.90],
-        'Owner': ['General Hospital', 'Dr. Alice Chen', 'MOH Singapore', 'Sunrise Medical Center',
-                 'Dr. Raj Patel', 'WHO Program A', 'Dr. Alice Chen', 'General Hospital',
-                 'Dr. Raj Patel', 'Sunrise Medical Center', 'MOH Singapore', 'WHO Program A'],
-        'Minting_Date': ['2025-04-01', '2025-04-03', '2025-04-04', '2025-04-05',
-                        '2025-04-07', '2025-04-10', '2025-04-12', '2025-04-15',
-                        '2025-04-18', '2025-04-20', '2025-04-22', '2025-04-25'],
-        'Status': ['Active'] * 12
-    })
-    
-    # Convert date column
-    st.session_state.qaly_nfts['Minting_Date'] = pd.to_datetime(st.session_state.qaly_nfts['Minting_Date'])
+# Custom CSS for professional styling
+st.markdown("""
+<style>
+    .main-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: white;
+    }
+    .metric-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar .sidebar-content {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 2px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #f0f2f6;
+        border-radius: 10px 10px 0px 0px;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #667eea;
+        color: white;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-if 'transfer_history' not in st.session_state:
-    # Demo transfer history
-    st.session_state.transfer_history = pd.DataFrame({
-        'Transfer_ID': ['TXN-001', 'TXN-002', 'TXN-003'],
-        'NFT_ID': ['QTK-002', 'QTK-005', 'QTK-008'],
-        'From': ['General Hospital', 'MOH Singapore', 'Dr. Alice Chen'],
-        'To': ['Dr. Alice Chen', 'Dr. Raj Patel', 'General Hospital'],
-        'Transfer_Date': ['2025-04-15', '2025-04-18', '2025-04-23'],
-        'Reason': ['Specialist Care Assignment', 'Program Reallocation', 'Hospital Network Transfer']
-    })
-    
-    st.session_state.transfer_history['Transfer_Date'] = pd.to_datetime(st.session_state.transfer_history['Transfer_Date'])
+# Data loading and processing
+def load_qaly_data():
+    df = pd.read_csv("QALY_data.csv")
+    return df
+
+def generate_nft_ledger():
+    df = pd.read_csv("nft_ledger.csv")
+    df.loc[:, 'mint_date'] = pd.to_datetime(df['mint_date'], errors='coerce')
+    return df
+
+def generate_time_series_data():
+    df = pd.read_csv("time_series_data.csv")
+    return df
+
+# Load data
+qaly_df = load_qaly_data()
+qaly_df['Cost_per_QALY'] = qaly_df['Cost'] / qaly_df['Avg QAlY Gain']
+nft_df = generate_nft_ledger()
+nft_df['mint_date'] = pd.to_datetime(nft_df['mint_date'], errors='coerce')
+time_series_df = generate_time_series_data()
 
 # Sidebar navigation
-st.sidebar.title("🏥 QALY Token Dashboard")
+st.sidebar.markdown("""
+<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;'>
+    <h2 style='color: white; text-align: center; margin: 0;'>🏥 QALY NFT Platform</h2>
+</div>
+""", unsafe_allow_html=True)
+
 page = st.sidebar.selectbox(
     "Navigate to:",
-    ["🏠 Dashboard Overview", "📊 QALY Inventory", "🔍 NFT Details", "↔️ Transfer QALYs", "📈 Analytics"]
+    ["🏠 Overview", "📊 Program Dashboard", "🎫 NFT Management", "🔄 Transfer NFTs"],
+    index=0
 )
 
-# Helper functions
-def generate_nft_id():
-    """Generate unique NFT ID"""
-    return f"QTK-{str(uuid.uuid4())[:8].upper()}"
-
-def get_entity_options():
-    """Get list of unique entities for transfers"""
-    return sorted(st.session_state.qaly_nfts['Owner'].unique())
-
-def calculate_total_qalys():
-    """Calculate total QALY value"""
-    return st.session_state.qaly_nfts['QALY_Value'].sum()
-
 # Main content based on page selection
-if page == "🏠 Dashboard Overview":
-    st.title("🏥 QALY Impact Token Management Dashboard")
-    st.markdown("### Quality-Adjusted Life Years (QALYs) as Verified Impact NFTs")
+if page == "🏠 Overview":
+    # Header
+    st.markdown("""
+    <div class='main-header'>
+        <h1>🏥 QALY NFT Management Platform</h1>
+        <p>Quality-Adjusted Life Years from Risk Reduction Programs</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Key metrics
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
+        total_qaly = qaly_df['Tot QALY Gain'].sum()
         st.metric(
-            label="Total QALYs Minted",
-            value=f"{calculate_total_qalys():.2f}",
-            delta="Impact Units"
+            label="Total QALYs Generated",
+            value=f"{total_qaly:,}",
+            #delta=f"+{random.randint(100, 500)} this month"
         )
     
     with col2:
+        total_nfts = len(nft_df)
         st.metric(
-            label="Active Programs",
-            value=len(st.session_state.qaly_nfts['Program_Name'].unique()),
-            delta="Health Initiatives"
+            label="Total NFTs Minted",
+            value=f"{total_nfts:,}",
+            #delta=f"+{random.randint(50, 200)} this week"
         )
     
     with col3:
+        active_programs = len(qaly_df)
         st.metric(
-            label="Total Transfers",
-            value=len(st.session_state.transfer_history),
-            delta="Ownership Changes"
+            label="Active Programs",
+            value=active_programs,
+            #delta="2 new programs"
         )
     
     with col4:
+        avg_cost_effectiveness = qaly_df['Cost_per_QALY'].mean()
         st.metric(
-            label="Diseases Targeted",
-            value=len(st.session_state.qaly_nfts['Disease'].unique()),
-            delta="Health Conditions"
+            label="Avg Cost per QALY",
+            value=f"${avg_cost_effectiveness:.0f}",
+            #delta="-5% improvement"
         )
     
-    # Charts
+    st.markdown("---")
+    
+    # Overview charts
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("📊 QALY Distribution by Disease")
-        disease_dist = st.session_state.qaly_nfts.groupby('Disease')['QALY_Value'].sum().reset_index()
-        fig_pie = px.pie(disease_dist, values='QALY_Value', names='Disease', 
-                        title="Total QALY Impact by Disease Category")
-        st.plotly_chart(fig_pie, use_container_width=True)
+        st.subheader("📈 QALY Distribution by Disease")
+        disease_summary = qaly_df.groupby('Disease')['Tot QALY Gain'].sum().reset_index()
+        fig = px.pie(
+            disease_summary, 
+            values='Tot QALY Gain', 
+            names='Disease',
+            color_discrete_sequence=px.colors.qualitative.Set3,
+            title="Total QALYs by Disease Category"
+        )
+        fig.update_traces(textposition='inside', textinfo='percent+label')
+        st.plotly_chart(fig, use_container_width=True)
     
     with col2:
-        st.subheader("🏥 Ownership Distribution")
-        owner_dist = st.session_state.qaly_nfts.groupby('Owner')['QALY_Value'].sum().reset_index()
-        fig_bar = px.bar(owner_dist, x='Owner', y='QALY_Value',
-                        title="QALY Holdings by Entity")
-        #fig_bar.update_xaxis(tickangle=45)
-        st.plotly_chart(fig_bar, use_container_width=True)
-    
-    # Recent activity
-    st.subheader("🔄 Recent Transfer Activity")
-    if len(st.session_state.transfer_history) > 0:
-        recent_transfers = st.session_state.transfer_history.tail(3)
-        st.dataframe(recent_transfers, use_container_width=True)
-    else:
-        st.info("No recent transfers recorded.")
+        st.subheader("💰 Cost-Effectiveness Analysis")
+        #qaly_df['Cost_per_QALY'] = qaly_df['Cost'] / qaly_df['Tot QALY Gain']
+        fig = px.scatter(
+            qaly_df,
+            x='Tot QALY Gain',
+            y='Cost_per_QALY',
+            size='Patient',
+            color='Disease',
+            hover_name='Intervention',
+            title="Cost per QALY vs Total QALY Gain",
+            labels={'Cost_per_QALY': 'Cost per QALY ($)', 'Tot QALY Gain': 'Total QALY Gain'}
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
-elif page == "📊 QALY Inventory":
-    st.title("📊 QALY NFT Inventory")
-    st.markdown("### Complete registry of minted QALY tokens")
+elif page == "📊 Program Dashboard":
+    st.markdown("""
+    <div class='main-header'>
+        <h1>📊 Program Dashboard</h1>
+        <p>Comprehensive analysis of disease risk reduction programs</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Filters
     col1, col2, col3 = st.columns(3)
-    
     with col1:
-        disease_filter = st.selectbox(
+        selected_diseases = st.multiselect(
             "Filter by Disease:",
-            ["All"] + list(st.session_state.qaly_nfts['Disease'].unique())
+            options=qaly_df['Disease'].unique(),
+            default=qaly_df['Disease'].unique()
         )
     
     with col2:
-        owner_filter = st.selectbox(
-            "Filter by Owner:",
-            ["All"] + get_entity_options()
+        selected_interventions = st.multiselect(
+            "Filter by Intervention:",
+            options=qaly_df['Intervention'].unique(),
+            default=qaly_df['Intervention'].unique()
         )
     
     with col3:
-        program_filter = st.selectbox(
-            "Filter by Program:",
-            ["All"] + list(st.session_state.qaly_nfts['Program_Name'].unique())
+        date_range = st.date_input(
+            "Date Range:",
+            value=(datetime.now() - timedelta(days=365), datetime.now()),
+            help="Filter time series data by date range"
         )
     
-    # Apply filters
-    filtered_df = st.session_state.qaly_nfts.copy()
+    # Filter data
+    filtered_df = qaly_df[
+        (qaly_df['Disease'].isin(selected_diseases)) &
+        (qaly_df['Intervention'].isin(selected_interventions))
+    ]
     
-    if disease_filter != "All":
-        filtered_df = filtered_df[filtered_df['Disease'] == disease_filter]
-    if owner_filter != "All":
-        filtered_df = filtered_df[filtered_df['Owner'] == owner_filter]
-    if program_filter != "All":
-        filtered_df = filtered_df[filtered_df['Program_Name'] == program_filter]
+    # Tabs for different views
+    tab1, tab2, tab3, tab4 = st.tabs(["📈 Time Series", "🗺️ Program Map", "💡 Bubble Analysis", "📋 Data Table"])
     
-    # Search functionality
-    search_term = st.text_input("🔍 Search NFTs:", placeholder="Search by NFT ID, intervention, etc.")
-    if search_term:
-        mask = filtered_df.astype(str).apply(lambda x: x.str.contains(search_term, case=False, na=False)).any(axis=1)
-        filtered_df = filtered_df[mask]
+    with tab1:
+        st.subheader("QALY Accrual Over Time")
+        
+        # Filter time series data
+        filtered_ts = time_series_df[
+            time_series_df['Program ID'].isin(filtered_df['Program ID'])
+        ]
+        
+        fig = px.area(
+            filtered_ts,
+            x='Date',
+            y='Cumulative QALYs',
+            color='Program Name',
+            title="Cumulative QALY Generation Over 10-Year Program Span",
+            labels={'Cumulative QALYs': 'Cumulative QALYs', 'Date': 'Program Timeline'}
+        )
+        fig.update_layout(hovermode='x unified')
+        st.plotly_chart(fig, use_container_width=True)
+        
+        # Annual breakdown
+        st.subheader("Annual QALY Generation")
+        annual_fig = px.bar(
+            filtered_ts,
+            x='Year',
+            y='Annual QALYs',
+            color='Disease',
+            facet_col='Program Name',
+            facet_col_wrap=4,
+            title="Annual QALY Generation by Program"
+        )
+        st.plotly_chart(annual_fig, use_container_width=True)
     
-    # Display results
-    st.subheader(f"📋 Found {len(filtered_df)} QALY NFTs")
+    with tab2:
+        st.subheader("Program Distribution Treemap")
+        
+        # Create treemap data
+        treemap_data = filtered_df.copy()
+        treemap_data['Disease_Intervention'] = treemap_data['Disease'] + ' - ' + treemap_data['Intervention']
+        
+        fig = px.treemap(
+            treemap_data,
+            path=['Disease', 'Intervention'],
+            values='Tot QALY Gain',
+            color='Cost_per_QALY',
+            color_continuous_scale='RdYlGn_r',
+            title="Program Distribution by Disease and Intervention"
+        )
+        st.plotly_chart(fig, use_container_width=True)
     
-    if len(filtered_df) > 0:
-        # Format the dataframe for display
+    with tab3:
+        st.subheader("Multi-Dimensional Program Analysis")
+        
+        fig = px.scatter(
+            filtered_df,
+            x='Patient',
+            y='Tot QALY Gain',
+            size='Survival Pop',
+            color='Avg QAlY Gain',
+            hover_name='Intervention',
+            hover_data=['Disease', 'Cost'],
+            title="Program Size vs QALY Impact (bubble size = survival population)",
+            labels={
+                'Patient': 'Total Patients',
+                'Tot QALY Gain': 'Total QALY Gain',
+                'Avg QAlY Gain': 'Average QALY Gain'
+            }
+        )
+        fig.update_traces(marker=dict(line=dict(width=2, color='DarkSlateGrey')))
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with tab4:
+        st.subheader("Program Data Table")
+        
+        # Enhanced data table with calculations
         display_df = filtered_df.copy()
-        display_df['Minting_Date'] = display_df['Minting_Date'].dt.strftime('%Y-%m-%d')
-        display_df['QALY_Value'] = display_df['QALY_Value'].round(2)
+        display_df['Survival Rate'] = (display_df['Survival Pop'] / display_df['Patient'] * 100).round(1)
         
         st.dataframe(
             display_df,
             use_container_width=True,
+            hide_index=True,
             column_config={
-                "NFT_ID": st.column_config.TextColumn("NFT ID", width="small"),
-                "QALY_Value": st.column_config.NumberColumn("QALY Value", format="%.2f"),
-                "Minting_Date": st.column_config.DateColumn("Minted On")
+                "Cost": st.column_config.NumberColumn(
+                    "Cost ($)",
+                    format="$%d"
+                ),
+                "Survival Rate": st.column_config.NumberColumn(
+                    "Survival Rate (%)",
+                    format="%.1f%%"
+                ),
+                "Tot QALY Gain": st.column_config.NumberColumn(
+                    "Total QALY Gain",
+                    format="%d"
+                )
             }
         )
-        
-        # Export functionality
-        csv = filtered_df.to_csv(index=False)
-        st.download_button(
-            label="📥 Download as CSV",
-            data=csv,
-            file_name=f"qaly_inventory_{datetime.now().strftime('%Y%m%d')}.csv",
-            mime="text/csv"
-        )
-    else:
-        st.warning("No QALYs match your search criteria.")
 
-elif page == "🔍 NFT Details":
-    st.title("🔍 QALY NFT Details")
-    st.markdown("### Detailed view of individual QALY tokens")
+elif page == "🎫 NFT Management":
+    st.markdown("""
+    <div class='main-header'>
+        <h1>🎫 NFT Management Dashboard</h1>
+        <p>Each NFT represents a single QALY from risk reduction programs</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # NFT selection
-    nft_options = st.session_state.qaly_nfts['NFT_ID'].tolist()
-    selected_nft = st.selectbox("Select NFT ID:", nft_options)
+    # NFT Summary metrics
+    col1, col2, col3, col4 = st.columns(4)
     
-    if selected_nft:
-        # Get NFT details
-        nft_data = st.session_state.qaly_nfts[st.session_state.qaly_nfts['NFT_ID'] == selected_nft].iloc[0]
+    with col1:
+        total_nfts = len(nft_df)
+        st.metric("Total NFTs", f"{total_nfts:,}")
+    
+    with col2:
+        active_nfts = len(nft_df[nft_df['status'] == 'active'])
+        st.metric("Active NFTs", f"{active_nfts:,}")
+    
+    with col3:
+        unique_owners = nft_df['owner_id'].nunique()
+        st.metric("Unique Owners", unique_owners)
+    
+    with col4:
+        total_transfers = nft_df['transfer_count'].sum()
+        st.metric("Total Transfers", f"{total_transfers:,}")
+    
+    # NFT Management tabs
+    tab1, tab2, tab3, tab4 = st.tabs(["🏠 NFT Overview", "👥 Ownership", "📊 Analytics", "🔍 NFT Details"])
+    
+    with tab1:
+        col1, col2 = st.columns(2)
         
-        # Display NFT card
-        st.markdown("---")
+        with col1:
+            st.subheader("NFT Distribution by Disease")
+            disease_nft_count = nft_df.groupby('disease').size().reset_index(name='count')
+            fig = px.bar(
+                disease_nft_count,
+                x='disease',
+                y='count',
+                color='disease',
+                title="NFT Count by Disease Category"
+            )
+            st.plotly_chart(fig, use_container_width=True)
+        
+        with col2:
+            st.subheader("NFT Status Distribution")
+            status_count = nft_df['status'].value_counts().reset_index()
+            status_count.columns = ['status', 'count']
+            fig = px.pie(
+                status_count,
+                values='count',
+                names='status',
+                title="NFT Status Distribution"
+            )
+            st.plotly_chart(fig, use_container_width=True)
+    
+    with tab2:
+        st.subheader("Ownership Distribution")
+        
+        ownership_stats = nft_df.groupby('owner_id').agg({
+            'nft_id': 'count',
+            'qaly_value': 'sum',
+            'transfer_count': 'sum'
+        }).reset_index()
+        ownership_stats.columns = ['Owner', 'NFT Count', 'Total QALY Value', 'Total Transfers']
+        ownership_stats = ownership_stats.sort_values('NFT Count', ascending=False)
+        
         col1, col2 = st.columns([2, 1])
         
         with col1:
-            st.markdown(f"## 🏷️ {selected_nft}")
-            st.markdown(f"**Program:** {nft_data['Program_Name']}")
-            st.markdown(f"**Disease:** {nft_data['Disease']}")
-            st.markdown(f"**Intervention:** {nft_data['Intervention']}")
-            st.markdown(f"**QALY Value:** {nft_data['QALY_Value']:.2f}")
-            st.markdown(f"**Current Owner:** {nft_data['Owner']}")
-            st.markdown(f"**Minted:** {nft_data['Minting_Date'].strftime('%Y-%m-%d')}")
-            st.markdown(f"**Status:** {nft_data['Status']}")
+            fig = px.bar(
+                ownership_stats,
+                x='Owner',
+                y='NFT Count',
+                color='Total QALY Value',
+                title="NFT Holdings by Owner",
+                color_continuous_scale='viridis'
+            )
+            fig.update_xaxes(tickangle=45)
+            st.plotly_chart(fig, use_container_width=True)
         
         with col2:
-            st.markdown("### 📊 Impact Metrics")
-            # Create a gauge chart for QALY value
-            fig_gauge = go.Figure(go.Indicator(
-                mode = "gauge+number",
-                value = nft_data['QALY_Value'],
-                domain = {'x': [0, 1], 'y': [0, 1]},
-                title = {'text': "QALY Impact"},
-                gauge = {
-                    'axis': {'range': [None, 5]},
-                    'bar': {'color': "darkblue"},
-                    'steps': [
-                        {'range': [0, 1], 'color': "lightgray"},
-                        {'range': [1, 2], 'color': "yellow"},
-                        {'range': [2, 5], 'color': "green"}
-                    ],
-                    'threshold': {
-                        'line': {'color': "red", 'width': 4},
-                        'thickness': 0.75,
-                        'value': 3
-                    }
-                }
-            ))
-            fig_gauge.update_layout(height=300)
-            st.plotly_chart(fig_gauge, use_container_width=True)
-        
-        # Transfer history for this NFT
-        st.markdown("---")
-        st.subheader("📋 Transfer History")
-        nft_transfers = st.session_state.transfer_history[
-            st.session_state.transfer_history['NFT_ID'] == selected_nft
-        ]
-        
-        if len(nft_transfers) > 0:
-            for _, transfer in nft_transfers.iterrows():
-                st.markdown(f"""
-                **{transfer['Transfer_Date'].strftime('%Y-%m-%d')}** - Transfer ID: {transfer['Transfer_ID']}
-                - From: {transfer['From']} → To: {transfer['To']}
-                - Reason: {transfer['Reason']}
-                """)
-        else:
-            st.info("No transfer history for this NFT.")
-
-elif page == "↔️ Transfer QALYs":
-    st.title("↔️ Transfer QALY NFTs")
-    st.markdown("### Simulate ownership transfer between entities")
-    
-    # Transfer form
-    with st.form("transfer_form"):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            source_entity = st.selectbox("From (Source):", get_entity_options())
-            
-        with col2:
-            dest_entity = st.selectbox("To (Destination):", get_entity_options())
-        
-        # Get NFTs owned by source entity
-        available_nfts = st.session_state.qaly_nfts[
-            st.session_state.qaly_nfts['Owner'] == source_entity
-        ]['NFT_ID'].tolist()
-        
-        if available_nfts:
-            selected_nft_transfer = st.selectbox("Select NFT to Transfer:", available_nfts)
-            transfer_reason = st.text_input("Reason for Transfer:", placeholder="e.g., Program reallocation, Specialist assignment")
-            
-            submitted = st.form_submit_button("🔄 Execute Transfer")
-            
-            if submitted and source_entity != dest_entity:
-                # Perform transfer
-                transfer_id = f"TXN-{str(uuid.uuid4())[:8].upper()}"
-                
-                # Update ownership
-                st.session_state.qaly_nfts.loc[
-                    st.session_state.qaly_nfts['NFT_ID'] == selected_nft_transfer, 'Owner'
-                ] = dest_entity
-                
-                # Add to transfer history
-                new_transfer = pd.DataFrame({
-                    'Transfer_ID': [transfer_id],
-                    'NFT_ID': [selected_nft_transfer],
-                    'From': [source_entity],
-                    'To': [dest_entity],
-                    'Transfer_Date': [datetime.now()],
-                    'Reason': [transfer_reason if transfer_reason else "Manual Transfer"]
-                })
-                
-                st.session_state.transfer_history = pd.concat([
-                    st.session_state.transfer_history, new_transfer
-                ], ignore_index=True)
-                
-                st.success(f"✅ Successfully transferred {selected_nft_transfer} from {source_entity} to {dest_entity}")
-                st.balloons()
-                
-            elif submitted and source_entity == dest_entity:
-                st.error("❌ Source and destination cannot be the same entity")
-        else:
-            st.warning(f"⚠️ No NFTs available for transfer from {source_entity}")
-    
-    # Recent transfers
-    st.markdown("---")
-    st.subheader("📊 Transfer Activity")
-    
-    if len(st.session_state.transfer_history) > 0:
-        # Transfer timeline
-        fig_timeline = px.line(
-            st.session_state.transfer_history.groupby('Transfer_Date').size().reset_index(name='Count'),
-            x='Transfer_Date', y='Count',
-            title="Transfer Activity Over Time"
-        )
-        st.plotly_chart(fig_timeline, use_container_width=True)
-        
-        # All transfers table
-        st.dataframe(st.session_state.transfer_history, use_container_width=True)
-    else:
-        st.info("No transfers recorded yet.")
-
-elif page == "📈 Analytics":
-    st.title("📈 QALY Analytics Dashboard")
-    st.markdown("### Comprehensive insights into QALY distribution and impact")
-    
-    # Analytics tabs
-    tab1, tab2, tab3 = st.tabs(["🎯 Impact Analysis", "🏥 Ownership Insights", "📊 Program Performance"])
-    
-    with tab1:
-        st.subheader("Disease Impact Distribution")
-        
-        # QALY by disease and intervention
-        impact_analysis = st.session_state.qaly_nfts.groupby(['Disease', 'Intervention'])['QALY_Value'].sum().reset_index()
-        fig_sunburst = px.sunburst(
-            impact_analysis, 
-            path=['Disease', 'Intervention'], 
-            values='QALY_Value',
-            title="QALY Impact Hierarchy: Disease → Intervention"
-        )
-        st.plotly_chart(fig_sunburst, use_container_width=True)
-        
-        # Top interventions
-        col1, col2 = st.columns(2)
-        with col1:
-            top_interventions = st.session_state.qaly_nfts.groupby('Intervention')['QALY_Value'].sum().sort_values(ascending=False).head(5)
-            st.markdown("#### 🥇 Top 5 Interventions by QALY")
-            for intervention, qaly in top_interventions.items():
-                st.markdown(f"**{intervention}:** {qaly:.2f} QALYs")
-        
-        with col2:
-            avg_qaly = st.session_state.qaly_nfts.groupby('Disease')['QALY_Value'].mean().sort_values(ascending=False)
-            st.markdown("#### 📊 Average QALY per Disease")
-            for disease, avg in avg_qaly.items():
-                st.markdown(f"**{disease}:** {avg:.2f} avg QALY")
-    
-    with tab2:
-        st.subheader("Ownership Concentration Analysis")
-        
-        # Ownership distribution
-        ownership_stats = st.session_state.qaly_nfts.groupby('Owner').agg({
-            'QALY_Value': ['sum', 'count', 'mean']
-        }).round(2)
-        ownership_stats.columns = ['Total_QALYs', 'NFT_Count', 'Avg_QALY']
-        ownership_stats = ownership_stats.reset_index()
-        
-        # Ownership concentration chart
-        fig_scatter = px.scatter(
-            ownership_stats, 
-            x='NFT_Count', 
-            y='Total_QALYs', 
-            size='Avg_QALY',
-            hover_name='Owner',
-            title="Ownership Analysis: NFT Count vs Total QALY Value",
-            labels={'NFT_Count': 'Number of NFTs Owned', 'Total_QALYs': 'Total QALY Value'}
-        )
-        st.plotly_chart(fig_scatter, use_container_width=True)
-        
-        # Entity type analysis
-        entity_types = {
-            'Hospital': ['General Hospital', 'Sunrise Medical Center'],
-            'Doctor': ['Dr. Alice Chen', 'Dr. Raj Patel'],
-            'Health Authority': ['MOH Singapore', 'WHO Program A']
-        }
-        
-        type_analysis = []
-        for entity_type, entities in entity_types.items():
-            type_data = st.session_state.qaly_nfts[st.session_state.qaly_nfts['Owner'].isin(entities)]
-            if len(type_data) > 0:
-                type_analysis.append({
-                    'Entity_Type': entity_type,
-                    'Total_QALYs': type_data['QALY_Value'].sum(),
-                    'Count': len(type_data)
-                })
-        
-        if type_analysis:
-            type_df = pd.DataFrame(type_analysis)
-            fig_type = px.bar(type_df, x='Entity_Type', y='Total_QALYs', 
-                             title="QALY Distribution by Entity Type")
-            st.plotly_chart(fig_type, use_container_width=True)
+            st.subheader("Top Owners")
+            st.dataframe(
+                ownership_stats.head(10),
+                use_container_width=True,
+                hide_index=True
+            )
     
     with tab3:
-        st.subheader("Program Performance Metrics")
+        st.subheader("NFT Transfer Analytics")
         
-        # Program efficiency analysis
-        program_stats = st.session_state.qaly_nfts.groupby('Program_Name').agg({
-            'QALY_Value': ['sum', 'count', 'mean'],
-            'Disease': 'nunique'
-        }).round(2)
-        program_stats.columns = ['Total_QALYs', 'NFT_Count', 'Avg_QALY', 'Diseases_Targeted']
-        program_stats = program_stats.reset_index()
+        # Transfer timeline
+        nft_df['mint_month'] = nft_df['mint_date'].dt.to_period('M')
+        monthly_mints = nft_df.groupby('mint_month').size().reset_index(name='mints')
+        monthly_mints['mint_month'] = monthly_mints['mint_month'].astype(str)
         
-        # Program performance matrix
-        fig_matrix = px.scatter(
-            program_stats,
-            x='Avg_QALY',
-            y='Total_QALYs',
-            size='NFT_Count',
-            color='Diseases_Targeted',
-            hover_name='Program_Name',
-            title="Program Performance Matrix",
-            labels={
-                'Avg_QALY': 'Average QALY per NFT',
-                'Total_QALYs': 'Total Program Impact',
-                'Diseases_Targeted': 'Number of Diseases'
+        fig = px.line(
+            monthly_mints,
+            x='mint_month',
+            y='mints',
+            title="NFT Minting Timeline",
+            markers=True
+        )
+        fig.update_xaxes(tickangle=45)
+        st.plotly_chart(fig, use_container_width=True)
+        
+        # Transfer heatmap
+        transfer_matrix = nft_df.groupby(['disease', 'intervention']).agg({
+            'nft_id': 'count',
+            'transfer_count': 'mean'
+        }).reset_index()
+        
+        fig = px.scatter(
+            transfer_matrix,
+            x='disease',
+            y='intervention',
+            size='nft_id',
+            color='transfer_count',
+            title="NFT Transfer Activity Heatmap",
+            labels={'transfer_count': 'Avg Transfers per NFT'}
+        )
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with tab4:
+        st.subheader("NFT Detailed View")
+        
+        # Search and filter
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            search_owner = st.selectbox("Filter by Owner:", ['All'] + sorted(nft_df['owner_id'].unique()), key="search_owner")
+        with col2:
+            search_disease = st.selectbox("Filter by Disease:", ['All'] + sorted(nft_df['disease'].unique()), key="search_disease")
+        with col3:
+            search_status = st.selectbox("Filter by Status:", ['All'] + sorted(nft_df['status'].unique()), key="search_status")
+        
+        # Apply filters
+        filtered_nfts = nft_df.copy()
+        if search_owner != 'All':
+            filtered_nfts = filtered_nfts[filtered_nfts['owner_id'] == search_owner]
+        if search_disease != 'All':
+            filtered_nfts = filtered_nfts[filtered_nfts['disease'] == search_disease]
+        if search_status != 'All':
+            filtered_nfts = filtered_nfts[filtered_nfts['status'] == search_status]
+        
+        # Display filtered NFTs
+        st.write(f"Showing {len(filtered_nfts)} NFTs")
+        st.dataframe(
+            filtered_nfts[['nft_id', 'program_id', 'disease', 'intervention', 'owner_id', 
+                          'status', 'mint_date', 'transfer_count', 'qaly_value']],
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "mint_date": st.column_config.DatetimeColumn(
+                    "Mint Date",
+                    format="DD/MM/YYYY"
+                ),
+                "qaly_value": st.column_config.NumberColumn(
+                    "QALY Value",
+                    format="%.4f"
+                )
             }
         )
-        st.plotly_chart(fig_matrix, use_container_width=True)
-        
-        # Program ranking
-        st.markdown("#### 🏆 Program Rankings")
-        program_ranking = program_stats.sort_values('Total_QALYs', ascending=False)
+
+elif page == "🔄 Transfer NFTs":
+    st.markdown("""
+    <div class='main-header'>
+        <h1>🔄 NFT Transfer Center</h1>
+        <p>Transfer NFTs between owners with full audit trail</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    tab1, tab2 = st.tabs(["🎯 Single Transfer", "📦 Batch Transfer"])
+    
+    with tab1:
+        st.subheader("Single NFT Transfer")
         
         col1, col2 = st.columns(2)
+        
         with col1:
-            st.markdown("**By Total Impact:**")
-            for i, (_, row) in enumerate(program_ranking.head(3).iterrows(), 1):
-                st.markdown(f"{i}. **{row['Program_Name']}** - {row['Total_QALYs']:.2f} QALYs")
+            # Select NFT to transfer
+            available_nfts = nft_df[nft_df['status'] == 'active']['nft_id'].tolist()[:50]
+            selected_nft = st.selectbox("Select NFT to Transfer:", available_nfts,key="selected_nft")
+            
+            if selected_nft:
+                nft_details = nft_df[nft_df['nft_id'] == selected_nft].iloc[0]
+                
+                st.info(f"""
+                **NFT Details:**
+                - Program: {nft_details['program_id']}
+                - Disease: {nft_details['disease']}
+                - Intervention: {nft_details['intervention']}
+                - Current Owner: {nft_details['owner_id']}
+                - QALY Value: {nft_details['qaly_value']:.4f}
+                """)
         
         with col2:
-            efficiency_ranking = program_stats.sort_values('Avg_QALY', ascending=False)
-            st.markdown("**By Efficiency (Avg QALY):**")
-            for i, (_, row) in enumerate(efficiency_ranking.head(3).iterrows(), 1):
-                st.markdown(f"{i}. **{row['Program_Name']}** - {row['Avg_QALY']:.2f} avg QALY")
+            # Transfer details
+            all_owners = sorted(nft_df['owner_id'].unique())
+            current_owner = nft_details['owner_id'] if 'nft_details' in locals() else None
+            available_recipients = [owner for owner in all_owners if owner != current_owner]
+            
+            new_owner = st.selectbox("Transfer to:", available_recipients if 'nft_details' in locals() else all_owners, key="new_owner")
+            transfer_reason = st.text_area("Transfer Reason (optional):", placeholder="e.g., Hospital merger, Research collaboration...")
+            
+            if st.button("🚀 Execute Transfer", type="primary"):
+                if selected_nft and new_owner:
+                    # Simulate transfer
+                    st.success(f"✅ Successfully transferred {selected_nft} from {current_owner} to {new_owner}")
+                    st.balloons()
+                    
+                    # Show transfer confirmation
+                    st.json({
+                        "transaction_id": f"TXN-{uuid.uuid4().hex[:8].upper()}",
+                        "nft_id": selected_nft,
+                        "from": current_owner,
+                        "to": new_owner,
+                        "timestamp": datetime.now().isoformat(),
+                        "reason": transfer_reason or "Not specified",
+                        "status": "completed"
+                    })
+    
+    with tab2:
+        st.subheader("Batch NFT Transfer")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Batch transfer parameters
+            from_owner = st.selectbox("Transfer from:", sorted(nft_df['owner_id'].unique()))
+            to_owner = st.selectbox("Transfer to:", [owner for owner in sorted(nft_df['owner_id'].unique()) if owner != from_owner])
+            
+            # Show available NFTs for selected owner
+            owner_nfts = nft_df[(nft_df['owner_id'] == from_owner) & (nft_df['status'] == 'active')]
+            st.write(f"Available NFTs from {from_owner}: {len(owner_nfts)}")
+            
+            transfer_count = st.number_input(
+                "Number of NFTs to transfer:",
+                min_value=1,
+                max_value=len(owner_nfts),
+                value=min(5, len(owner_nfts))
+            )
+            
+        with col2:
+            # Preview of NFTs to be transferred (oldest first)
+            if from_owner and len(owner_nfts) > 0:
+                nfts_to_transfer = owner_nfts.nsmallest(transfer_count, 'mint_date')
+                
+                st.subheader("NFTs to be transferred:")
+                st.dataframe(
+                    nfts_to_transfer[['nft_id', 'program_id', 'disease', 'mint_date', 'qaly_value']],
+                    use_container_width=True,
+                    hide_index=True
+                )
+                
+                total_qaly_value = nfts_to_transfer['qaly_value'].sum()
+                st.metric("Total QALY Value", f"{total_qaly_value:.4f}")
+        
+        # Batch transfer execution
+        st.markdown("---")
+        batch_reason = st.text_area("Batch Transfer Reason:", placeholder="e.g., Department restructuring, Grant requirements...")
+        
+        if st.button("🚀 Execute Batch Transfer", type="primary"):
+            if from_owner and to_owner and transfer_count > 0:
+                # Simulate batch transfer
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                
+                for i in range(transfer_count):
+                    progress_bar.progress((i + 1) / transfer_count)
+                    status_text.text(f'Transferring NFT {i + 1} of {transfer_count}...')
+                
+                st.success(f"✅ Successfully transferred {transfer_count} NFTs from {from_owner} to {to_owner}")
+                st.balloons()
+                
+                # Show batch transfer summary
+                batch_summary = {
+                    "batch_id": f"BATCH-{uuid.uuid4().hex[:8].upper()}",
+                    "nfts_transferred": transfer_count,
+                    "from_owner": from_owner,
+                    "to_owner": to_owner,
+                    "total_qaly_value": f"{total_qaly_value:.4f}",
+                    "timestamp": datetime.now().isoformat(),
+                    "reason": batch_reason or "Not specified",
+                    "status": "completed"
+                }
+                
+                st.json(batch_summary)
+        
+        # Transfer history visualization
+        st.markdown("---")
+        st.subheader("📈 Transfer Activity Visualization")
+        
+        # Simulate some transfer history data for visualization
+        transfer_history = []
+        for i in range(30):
+            transfer_history.append({
+                'date': datetime.now() - timedelta(days=i),
+                'transfers': random.randint(5, 50),
+                'volume': random.randint(100, 1000)
+            })
+        
+        transfer_df = pd.DataFrame(transfer_history)
+        
+        fig = make_subplots(
+            rows=2, cols=1,
+            subplot_titles=('Daily Transfer Count', 'Daily Transfer Volume (QALYs)'),
+            vertical_spacing=0.1
+        )
+        
+        fig.add_trace(
+            go.Scatter(x=transfer_df['date'], y=transfer_df['transfers'], 
+                      mode='lines+markers', name='Transfers', line=dict(color='#667eea')),
+            row=1, col=1
+        )
+        
+        fig.add_trace(
+            go.Scatter(x=transfer_df['date'], y=transfer_df['volume'], 
+                      mode='lines+markers', name='Volume', line=dict(color='#764ba2')),
+            row=2, col=1
+        )
+        
+        fig.update_layout(height=400, showlegend=False, title_text="Recent Transfer Activity")
+        st.plotly_chart(fig, use_container_width=True)
 
 # Footer
 st.markdown("---")
 st.markdown("""
-<div style='text-align: center; color: #666; font-size: 0.8em;'>
-    🏥 QALY Impact Token Management System | Transforming Health Outcomes into Verifiable Assets
+<div style='text-align: center; color: #666; padding: 1rem;'>
+    <p>🏥 QALY NFT Management Platform</p>
+    <p><em>This is a demonstration application for managing Quality-Adjusted Life Years as NFTs</em></p>
 </div>
 """, unsafe_allow_html=True)
