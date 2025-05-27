@@ -1,8 +1,8 @@
 Program ID,Program Name,Disease,Intervention,Patient,Survival Pop,Avg QAlY Gain,Tot QALY Gain,Cost
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,500,448.5,1.31,770,12
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,400,365.4,1.49,706,72
-BP3,ARBs,Hypertension,ARBs,1000,913.5,1.58,1849,72
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,1200,1086.2,1.23,1781,60
-BP5,Beta Blockers,Hypertension,Beta Blockers,400,355.5,1.05,505,60
-LDL1,Statins,Hypercholesterolemia,Statins,1400,1278.9,1.41,2206,54
-LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,100,90.5,1.14,130,120
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,500,448.5,1.31,770,120
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,400,365.4,1.49,706,720
+BP3,ARBs,Hypertension,ARBs,1000,913.5,1.58,1849,720
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,1200,1086.2,1.23,1781,600
+BP5,Beta Blockers,Hypertension,Beta Blockers,400,355.5,1.05,505,600
+LDL1,Statins,Hypercholesterolemia,Statins,1400,1278.9,1.41,2206,540
+LDL2,Ezetimibe,Hypercholesterolemia,Ezetimibe,100,90.5,1.14,130,1200
