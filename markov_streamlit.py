@@ -189,7 +189,7 @@ def render():
                 st.markdown("---")
                 
                 # Additional inputs
-                st.markdown('<h3 class="section-header">⚙️ Study Parameters</h3>', unsafe_allow_html=True)
+                st.markdown('<h3 class="section-header">⚙️ Program Parameters</h3>', unsafe_allow_html=True)
                 program_name = st.text_input("📋 Program Name", value="Cardiovascular Risk Reduction Study")
                 cohort_size = st.number_input("👥 Patient Cohort Size", min_value=100, max_value=100000, value=10000, step=100)
                 simulation_duration = st.number_input("📅 Simulation Duration (years)", min_value=1, max_value=50, value=10, step=1)
