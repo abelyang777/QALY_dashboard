@@ -681,7 +681,7 @@ import hashlib
 
 import streamlit as st
 import hashlib
-
+'''
 # ----- Configuration -----
 # Map passwords to page names
 PASSWORD_PAGE_MAP = {
@@ -726,7 +726,9 @@ if st.session_state["authenticated"]:
         st.session_state["authenticated"] = False
 else:
     login()
-
+'''
+if __name__ == '__main__':
+    main_app()
 
 # Footer
 st.markdown("---")
