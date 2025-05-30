@@ -681,52 +681,52 @@ import hashlib
 
 import streamlit as st
 import hashlib
-'''
-# ----- Configuration -----
-# Map passwords to page names
-PASSWORD_PAGE_MAP = {
-    "dash": "main_app",
-    "issue": "issue",
-}
+def login_function()
+    # ----- Configuration -----
+    # Map passwords to page names
+    PASSWORD_PAGE_MAP = {
+        "dash": "main_app",
+        "issue": "issue",
+    }
 
-# Optional: store hashed passwords for security
-def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+    # Optional: store hashed passwords for security
+    def hash_password(password):
+        return hashlib.sha256(password.encode()).hexdigest()
 
-# Hashed password map
-PASSWORD_HASH_MAP = {hash_password(pw): page for pw, page in PASSWORD_PAGE_MAP.items()}
+    # Hashed password map
+    PASSWORD_HASH_MAP = {hash_password(pw): page for pw, page in PASSWORD_PAGE_MAP.items()}
 
-# ----- Login UI -----
-def login():
-    st.title("🔐 QALY System Login (issue or dash)")
-    password = st.text_input("Password", type="password")
+    # ----- Login UI -----
+    def login():
+        st.title("🔐 QALY System Login (issue or dash)")
+        password = st.text_input("Password", type="password")
 
-    if st.button("Login"):
-        hashed_pw = hash_password(password)
-        if hashed_pw in PASSWORD_HASH_MAP:
-            st.session_state["authenticated"] = True
-            st.session_state["page"] = PASSWORD_HASH_MAP[hashed_pw]
-            st.rerun()
-        else:
-            st.error("❌ Invalid password")
+        if st.button("Login"):
+            hashed_pw = hash_password(password)
+            if hashed_pw in PASSWORD_HASH_MAP:
+                st.session_state["authenticated"] = True
+                st.session_state["page"] = PASSWORD_HASH_MAP[hashed_pw]
+                st.rerun()
+            else:
+                st.error("❌ Invalid password")
 
-# ----- App Entry -----
-if "authenticated" not in st.session_state:
-    st.session_state["authenticated"] = False
-
-if st.session_state["authenticated"]:
-    page = st.session_state.get("page", "")
-    if page == "main_app":
-        main_app()
-    elif page == "issue":
-        from markov_streamlit import render
-        render()
-    else:
-        st.error("Unknown page. Please log in again.")
+    # ----- App Entry -----
+    if "authenticated" not in st.session_state:
         st.session_state["authenticated"] = False
-else:
-    login()
-'''
+
+    if st.session_state["authenticated"]:
+        page = st.session_state.get("page", "")
+        if page == "main_app":
+            main_app()
+        elif page == "issue":
+            from markov_streamlit import render
+            render()
+        else:
+            st.error("Unknown page. Please log in again.")
+            st.session_state["authenticated"] = False
+    else:
+        login()
+        
 if __name__ == '__main__':
     main_app()
 
