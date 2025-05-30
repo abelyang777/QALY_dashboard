@@ -681,7 +681,7 @@ import hashlib
 
 import streamlit as st
 import hashlib
-def login_function()
+def login_function():
     # ----- Configuration -----
     # Map passwords to page names
     PASSWORD_PAGE_MAP = {
