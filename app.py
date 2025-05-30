@@ -679,36 +679,54 @@ import urllib.parse
 import json
 import hashlib
 
-# ----- Configuration -----
-CORRECT_PASSWORD = "QALY2025"  # You can hash this for better security
+import streamlit as st
+import hashlib
 
-# Optional: store password as hash
+# ----- Configuration -----
+# Map passwords to page names
+PASSWORD_PAGE_MAP = {
+    "dash": "main_app",
+    "issue": "issue",
+}
+
+# Optional: store hashed passwords for security
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
-# Hashed password for secure123
-PASSWORD_HASH = hash_password(CORRECT_PASSWORD)
+# Hashed password map
+PASSWORD_HASH_MAP = {hash_password(pw): page for pw, page in PASSWORD_PAGE_MAP.items()}
 
 # ----- Login UI -----
 def login():
-    st.title("🔐 QALY Dashboard Login")
-    password = st.text_input("Password(QALY2025)", type="password")
+    st.title("🔐 QALY System Login (issue or dash)")
+    password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        if hash_password(password) == PASSWORD_HASH:
+        hashed_pw = hash_password(password)
+        if hashed_pw in PASSWORD_HASH_MAP:
             st.session_state["authenticated"] = True
-            st.rerun()  # <-- This fixes the double-click issue
+            st.session_state["page"] = PASSWORD_HASH_MAP[hashed_pw]
+            st.rerun()
         else:
-            st.error("❌ Invalid username or password")
+            st.error("❌ Invalid password")
 
 # ----- App Entry -----
 if "authenticated" not in st.session_state:
     st.session_state["authenticated"] = False
 
 if st.session_state["authenticated"]:
-    main_app()
+    page = st.session_state.get("page", "")
+    if page == "main_app":
+        main_app()
+    elif page == "issue":
+        from markov_streamlit import render
+        render()
+    else:
+        st.error("Unknown page. Please log in again.")
+        st.session_state["authenticated"] = False
 else:
     login()
+
 
 # Footer
 st.markdown("---")
