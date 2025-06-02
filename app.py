@@ -71,7 +71,7 @@ def generate_time_series_data():
 
 # Load data
 qaly_df = load_qaly_data()
-qaly_df['Cost_per_QALY'] = qaly_df['Cost'] / qaly_df['Avg QAlY Gain']
+qaly_df['Cost per QALY'] = qaly_df['Cost'] / qaly_df['Avg QALY Gain']
 nft_df = generate_nft_ledger()
 nft_df['mint_date'] = pd.to_datetime(nft_df['mint_date'], errors='coerce')
 time_series_df = generate_time_series_data()
@@ -173,7 +173,7 @@ def main_app():
                 )
             
             with col4:
-                avg_cost_effectiveness = qaly_df['Cost_per_QALY'].mean()
+                avg_cost_effectiveness = qaly_df['Cost per QALY'].mean()
                 st.metric(
                     label="Avg Cost per QALY",
                     value=f"${avg_cost_effectiveness:.0f}",
@@ -187,29 +187,64 @@ def main_app():
             
             with col1:
                 st.subheader("📈 QALY Distribution by Disease")
+                
+                # Create disease summary for the main pie chart
                 disease_summary = qaly_df.groupby('Disease')['Tot QALY Gain'].sum().reset_index()
-                fig = px.pie(
-                    disease_summary, 
-                    values='Tot QALY Gain', 
-                    names='Disease',
-                    color_discrete_sequence=px.colors.qualitative.Set3,
-                    title="Total QALYs by Disease Category"
+                
+                # Add drill-down controls
+                drill_down_option = st.radio(
+                    "View Options:",
+                    ["Disease Overview", "Drill Down by Disease"],
+                    horizontal=True
                 )
-                fig.update_traces(textposition='inside', textinfo='percent+label')
-                st.plotly_chart(fig, use_container_width=True)
-            
+                
+                if drill_down_option == "Disease Overview":
+                    # Main pie chart showing diseases
+                    fig = px.pie(
+                        disease_summary, 
+                        values='Tot QALY Gain', 
+                        names='Disease',
+                        color_discrete_sequence=px.colors.qualitative.Set3,
+                        title="Total QALYs by Disease Category"
+                    )
+                    fig.update_traces(textposition='inside', textinfo='percent+label')
+                    st.plotly_chart(fig, use_container_width=True)
+                    
+                else:
+                    # Drill-down section
+                    selected_disease = st.selectbox(
+                        "Select a disease to drill down:",
+                        options=disease_summary['Disease'].tolist(),
+                        index=0
+                    )
+                    
+                    # Filter data for selected disease
+                    filtered_data = qaly_df[qaly_df['Disease'] == selected_disease]
+                    
+                    # Create drill-down pie chart
+                    fig = px.pie(
+                        filtered_data,
+                        values='Tot QALY Gain',
+                        names='Intervention',
+                        color_discrete_sequence=px.colors.qualitative.Pastel,
+                        title=f"QALY Distribution for {selected_disease} Interventions"
+                    )
+                    fig.update_traces(textposition='inside', textinfo='percent+label')
+                    st.plotly_chart(fig, use_container_width=True)
+
             with col2:
                 st.subheader("💰 Cost-Effectiveness Analysis")
-                #qaly_df['Cost_per_QALY'] = qaly_df['Cost'] / qaly_df['Tot QALY Gain']
+                import numpy as np
+                #qaly_df['Cost per QALY_log2'] = np.log2(qaly_df['Cost per QALY'])
                 fig = px.scatter(
                     qaly_df,
-                    x='Tot QALY Gain',
-                    y='Cost_per_QALY',
-                    size='Patient',
+                    x='Avg QALY Gain',
+                    y='Cost per QALY',
+                    size='Tot QALY Gain',
                     color='Disease',
                     hover_name='Intervention',
-                    title="Cost per QALY vs Total QALY Gain",
-                    labels={'Cost_per_QALY': 'Cost per QALY ($)', 'Tot QALY Gain': 'Total QALY Gain'}
+                    title="Cost per QALY vs Per Person QALY Gain",
+                    labels={'Cost per QALY': 'Cost per QALY ($)', 'Tot QALY Gain': 'Total QALY Gain'}
                 )
                 st.plotly_chart(fig, use_container_width=True)
 
@@ -227,14 +262,14 @@ def main_app():
                 selected_diseases = st.multiselect(
                     "Filter by Disease:",
                     options=qaly_df['Disease'].unique(),
-                    default=qaly_df['Disease'].unique()
+                    default=qaly_df['Disease'].unique()[-1],
                 )
             
             with col2:
                 selected_interventions = st.multiselect(
                     "Filter by Intervention:",
                     options=qaly_df['Intervention'].unique(),
-                    default=qaly_df['Intervention'].unique()
+                    default=qaly_df[qaly_df['Disease']==qaly_df['Disease'].unique()[-1]]['Intervention'].unique()
                 )
             
             with col3:
@@ -283,6 +318,7 @@ def main_app():
                     title="Annual QALY Generation by Program"
                 )
                 st.plotly_chart(annual_fig, use_container_width=True)
+            
             with tab2:
                 st.subheader("Program Distribution Treemap")
                 
@@ -294,7 +330,7 @@ def main_app():
                     treemap_data,
                     path=['Disease', 'Program Name'],
                     values='Tot QALY Gain',
-                    color='Cost_per_QALY',
+                    color='Cost per QALY',
                     color_continuous_scale='RdYlGn_r',
                     title="Program Distribution by Disease and Intervention"
                 )
@@ -308,14 +344,14 @@ def main_app():
                     x='Patient',
                     y='Tot QALY Gain',
                     size='Survival Pop',
-                    color='Avg QAlY Gain',
+                    color='Avg QALY Gain',
                     hover_name='Program Name',
                     hover_data=['Disease', 'Cost'],
                     title="Program Size vs QALY Impact (bubble size = survival population)",
                     labels={
                         'Patient': 'Total Patients',
                         'Tot QALY Gain': 'Total QALY Gain',
-                        'Avg QAlY Gain': 'Average QALY Gain'
+                        'Avg QALY Gain': 'Average QALY Gain'
                     }
                 )
                 fig.update_traces(marker=dict(line=dict(width=2, color='DarkSlateGrey')))
