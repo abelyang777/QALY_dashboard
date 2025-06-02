@@ -189,7 +189,7 @@ def main_app():
                 st.subheader("📈 QALY Distribution by Disease")
                 
                 # Create disease summary for the main pie chart
-                disease_summary = qaly_df.groupby('Disease')['Tot QALY Gain'].sum().reset_index()
+                disease_summary = qaly_df.groupby('Disease')[['Tot QALY Gain','Patient']].sum().reset_index()
                 
                 # Add drill-down controls
                 drill_down_option = st.radio(
@@ -204,6 +204,7 @@ def main_app():
                         disease_summary, 
                         values='Tot QALY Gain', 
                         names='Disease',
+                        hover_data = 'Patient',
                         color_discrete_sequence=px.colors.qualitative.Set3,
                         title="Total QALYs by Disease Category"
                     )
@@ -226,6 +227,7 @@ def main_app():
                         filtered_data,
                         values='Tot QALY Gain',
                         names='Intervention',
+                        hover_data = 'Patient',
                         color_discrete_sequence=px.colors.qualitative.Pastel,
                         title=f"QALY Distribution for {selected_disease} Interventions"
                     )
