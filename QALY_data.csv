@@ -4,8 +4,9 @@ BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,400,365.4,1.49,706,720
 BP3,ARBs,Hypertension,ARBs,1000,913.5,1.58,1849,720
 BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,1200,1086.2,1.23,1781,600
 BP5,Beta Blockers,Hypertension,Beta Blockers,400,355.5,1.05,505,600
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,1000,1278.9,1.41,1576,300
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,400,1254.6,1.39,630,500
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,100,90.5,1.14,130,1200
-LDL4,Repatha,Hypercholesterolemia,Repatha,100,92,1.67,186,68720
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,100,91,1.66,184,67468
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,300,273.8,1.41,472.8,300
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,400,365.1,1.39,630,500
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,500,456.4,1.4,785,600
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,100,90.5,1.14,130,1200
+LDL5,Repatha,Hypercholesterolemia,Repatha,100,92,1.67,186,68720
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,100,91,1.66,184,67468

@@ -1,101 +1,111 @@
 Program ID,Program Name,Disease,Intervention,Year,Date,Cumulative QALYs,Annual QALYs
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,1,2020-06-03 16:16:43.466686,80.36,80.36
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,2,2021-06-03 16:16:43.466686,134.73,73.13
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,3,2022-06-03 16:16:43.466686,196.33,73.13
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,4,2023-06-03 16:16:43.466686,339.13,154.33
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,5,2024-06-02 16:16:43.466686,365.97,119.57
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,6,2025-06-02 16:16:43.466686,465.47,157.47
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,7,2026-06-02 16:16:43.466686,596.15,226.55
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,8,2027-06-02 16:16:43.466686,568.7,137.5
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,9,2028-06-01 16:16:43.466686,628.78,135.98
-BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,10,2029-06-01 16:16:43.466686,654.85,100.45
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,1,2020-06-03 16:16:43.466686,76.76,76.76
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,2,2021-06-03 16:16:43.466686,142.42,85.94
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,3,2022-06-03 16:16:43.466686,187.38,74.42
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,4,2023-06-03 16:16:43.466686,309.61,140.17
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,5,2024-06-02 16:16:43.466686,399.44,173.52
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,6,2025-06-02 16:16:43.466686,353.05,70.65
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,7,2026-06-02 16:16:43.466686,447.21,108.33
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,8,2027-06-02 16:16:43.466686,512.28,116.92
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,9,2028-06-01 16:16:43.466686,740.64,288.8
-BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,10,2029-06-01 16:16:43.466686,816.72,308.4
-BP3,ARBs,Hypertension,ARBs,1,2020-06-03 16:16:43.467687,174.66,174.66
-BP3,ARBs,Hypertension,ARBs,2,2021-06-03 16:16:43.467687,319.03,171.11
-BP3,ARBs,Hypertension,ARBs,3,2022-06-03 16:16:43.467687,479.16,183.32
-BP3,ARBs,Hypertension,ARBs,4,2023-06-03 16:16:43.467687,786.34,342.58
-BP3,ARBs,Hypertension,ARBs,5,2024-06-02 16:16:43.467687,753.7,162.02
-BP3,ARBs,Hypertension,ARBs,6,2025-06-02 16:16:43.467687,1021.21,281.61
-BP3,ARBs,Hypertension,ARBs,7,2026-06-02 16:16:43.467687,1384.45,496.93
-BP3,ARBs,Hypertension,ARBs,8,2027-06-02 16:16:43.467687,1432.2,396.76
-BP3,ARBs,Hypertension,ARBs,9,2028-06-01 16:16:43.467687,1342.23,158.87
-BP3,ARBs,Hypertension,ARBs,10,2029-06-01 16:16:43.467687,1604.45,273.17
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,1,2020-06-03 16:16:43.467687,194.63,194.63
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,2,2021-06-03 16:16:43.467687,392.75,250.27
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,3,2022-06-03 16:16:43.467687,522.52,237.56
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,4,2023-06-03 16:16:43.467687,723.85,296.41
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,5,2024-06-02 16:16:43.467687,984.53,414.61
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,6,2025-06-02 16:16:43.467687,1125.0,412.6
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,7,2026-06-02 16:16:43.467687,1322.87,467.99
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,8,2027-06-02 16:16:43.467687,1147.67,150.31
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,9,2028-06-01 16:16:43.467687,1639.34,499.5
-BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,10,2029-06-01 16:16:43.467687,1840.24,557.92
-BP5,Beta Blockers,Hypertension,Beta Blockers,1,2020-06-03 16:16:43.467687,41.19,41.19
-BP5,Beta Blockers,Hypertension,Beta Blockers,2,2021-06-03 16:16:43.467687,89.45,49.05
-BP5,Beta Blockers,Hypertension,Beta Blockers,3,2022-06-03 16:16:43.467687,138.61,57.81
-BP5,Beta Blockers,Hypertension,Beta Blockers,4,2023-06-03 16:16:43.467687,161.63,40.43
-BP5,Beta Blockers,Hypertension,Beta Blockers,5,2024-06-02 16:16:43.467687,301.22,139.62
-BP5,Beta Blockers,Hypertension,Beta Blockers,6,2025-06-02 16:16:43.467687,245.72,43.72
-BP5,Beta Blockers,Hypertension,Beta Blockers,7,2026-06-02 16:16:43.467687,330.05,87.65
-BP5,Beta Blockers,Hypertension,Beta Blockers,8,2027-06-02 16:16:43.467687,448.83,166.03
-BP5,Beta Blockers,Hypertension,Beta Blockers,9,2028-06-01 16:16:43.467687,374.88,51.68
-BP5,Beta Blockers,Hypertension,Beta Blockers,10,2029-06-01 16:16:43.467687,412.21,48.61
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,1,2020-06-03 16:16:43.467687,159.22,159.22
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,2,2021-06-03 16:16:43.467687,262.79,136.71
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,3,2022-06-03 16:16:43.467687,390.58,138.42
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,4,2023-06-03 16:16:43.467687,631.92,253.68
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,5,2024-06-02 16:16:43.467687,656.49,152.17
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,6,2025-06-02 16:16:43.467687,1067.26,436.86
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,7,2026-06-02 16:16:43.467687,1251.23,494.75
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,8,2027-06-02 16:16:43.467687,1249.42,366.86
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,9,2028-06-01 16:16:43.467687,1613.95,605.31
-LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,10,2029-06-01 16:16:43.467687,1365.35,230.63
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,1,2020-06-03 16:16:43.467687,58.29,58.29
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,2,2021-06-03 16:16:43.467687,127.19,76.79
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,3,2022-06-03 16:16:43.467687,178.56,77.76
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,4,2023-06-03 16:16:43.467687,216.87,65.67
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,5,2024-06-02 16:16:43.467687,328.14,126.54
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,6,2025-06-02 16:16:43.467687,447.73,195.73
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,7,2026-06-02 16:16:43.467687,477.84,175.44
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,8,2027-06-02 16:16:43.467687,561.84,209.04
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,9,2028-06-01 16:16:43.467687,512.42,109.22
-LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,10,2029-06-01 16:16:43.467687,573.88,120.28
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,1,2020-06-03 16:16:43.467687,13.72,13.72
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,2,2021-06-03 16:16:43.467687,22.48,12.08
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,3,2022-06-03 16:16:43.467687,39.56,18.76
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,4,2023-06-03 16:16:43.467687,59.96,28.76
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,5,2024-06-02 16:16:43.467687,53.15,11.55
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,6,2025-06-02 16:16:43.467687,80.09,28.09
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,7,2026-06-02 16:16:43.467687,95.34,32.94
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,8,2027-06-02 16:16:43.467687,90.97,18.17
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,9,2028-06-01 16:16:43.467687,99.6,16.4
-LDL3,Ezetimibe,Hypercholesterolemia,Ezetimibe,10,2029-06-01 16:16:43.467687,143.77,50.17
-LDL4,Repatha,Hypercholesterolemia,Repatha,1,2020-06-03 16:16:43.467687,16.73,16.73
-LDL4,Repatha,Hypercholesterolemia,Repatha,2,2021-06-03 16:16:43.467687,37.86,22.98
-LDL4,Repatha,Hypercholesterolemia,Repatha,3,2022-06-03 16:16:43.467687,60.12,30.36
-LDL4,Repatha,Hypercholesterolemia,Repatha,4,2023-06-03 16:16:43.467687,63.18,18.54
-LDL4,Repatha,Hypercholesterolemia,Repatha,5,2024-06-02 16:16:43.467687,99.18,39.66
-LDL4,Repatha,Hypercholesterolemia,Repatha,6,2025-06-02 16:16:43.467687,114.97,40.57
-LDL4,Repatha,Hypercholesterolemia,Repatha,7,2026-06-02 16:16:43.467687,135.81,46.53
-LDL4,Repatha,Hypercholesterolemia,Repatha,8,2027-06-02 16:16:43.467687,132.54,28.38
-LDL4,Repatha,Hypercholesterolemia,Repatha,9,2028-06-01 16:16:43.467687,139.25,20.21
-LDL4,Repatha,Hypercholesterolemia,Repatha,10,2029-06-01 16:16:43.467687,153.95,20.03
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,1,2020-06-03 16:16:43.467687,16.68,16.68
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,2,2021-06-03 16:16:43.467687,31.59,16.87
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,3,2022-06-03 16:16:43.467687,62.59,33.15
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,4,2023-06-03 16:16:43.467687,72.24,28.08
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,5,2024-06-02 16:16:43.467687,89.32,30.44
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,6,2025-06-02 16:16:43.467687,96.05,22.45
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,7,2026-06-02 16:16:43.467687,103.48,15.16
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,8,2027-06-02 16:16:43.467687,118.39,15.35
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,9,2028-06-01 16:16:43.467687,163.53,45.77
-LDL5,Inclisiran,Hypercholesterolemia,Inclisiran,10,2029-06-01 16:16:43.467687,152.27,19.79
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,1,2020-06-03 17:48:13.443736,69.23,69.23
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,2,2021-06-03 17:48:13.443736,164.3,102.7
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,3,2022-06-03 17:48:13.443736,222.9,99.7
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,4,2023-06-03 17:48:13.443736,285.78,100.98
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,5,2024-06-02 17:48:13.443736,370.9,124.5
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,6,2025-06-02 17:48:13.443736,533.57,225.57
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,7,2026-06-02 17:48:13.443736,512.42,142.82
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,8,2027-06-02 17:48:13.443736,581.23,150.03
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,9,2028-06-01 17:48:13.443736,802.79,309.99
+BP1,Thiazide diuretics,Hypertension,Thiazide diuretics,10,2029-06-01 17:48:13.443736,731.97,177.57
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,1,2020-06-03 17:48:13.444732,64.52,64.52
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,2,2021-06-03 17:48:13.444732,114.07,57.59
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,3,2022-06-03 17:48:13.444732,218.11,105.15
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,4,2023-06-03 17:48:13.444732,304.77,135.33
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,5,2024-06-02 17:48:13.444732,313.88,87.96
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,6,2025-06-02 17:48:13.444732,395.21,112.81
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,7,2026-06-02 17:48:13.444732,470.29,131.41
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,8,2027-06-02 17:48:13.444732,567.51,172.15
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,9,2028-06-01 17:48:13.444732,709.46,257.62
+BP2,ACE Inhibitors,Hypertension,ACE Inhibitors,10,2029-06-01 17:48:13.444732,616.54,108.22
+BP3,ARBs,Hypertension,ARBs,1,2020-06-03 17:48:13.444732,183.68,183.68
+BP3,ARBs,Hypertension,ARBs,2,2021-06-03 17:48:13.444732,351.31,203.39
+BP3,ARBs,Hypertension,ARBs,3,2022-06-03 17:48:13.444732,528.39,232.55
+BP3,ARBs,Hypertension,ARBs,4,2023-06-03 17:48:13.444732,737.16,293.4
+BP3,ARBs,Hypertension,ARBs,5,2024-06-02 17:48:13.444732,1019.05,427.37
+BP3,ARBs,Hypertension,ARBs,6,2025-06-02 17:48:13.444732,1311.49,571.89
+BP3,ARBs,Hypertension,ARBs,7,2026-06-02 17:48:13.444732,1153.31,265.79
+BP3,ARBs,Hypertension,ARBs,8,2027-06-02 17:48:13.444732,1447.65,412.21
+BP3,ARBs,Hypertension,ARBs,9,2028-06-01 17:48:13.444732,1390.54,207.18
+BP3,ARBs,Hypertension,ARBs,10,2029-06-01 17:48:13.444732,1821.7,490.42
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,1,2020-06-03 17:48:13.444732,194.6,194.6
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,2,2021-06-03 17:48:13.444732,348.36,205.88
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,3,2022-06-03 17:48:13.444732,487.3,202.34
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,4,2023-06-03 17:48:13.444732,644.18,216.74
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,5,2024-06-02 17:48:13.444732,860.77,290.85
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,6,2025-06-02 17:48:13.444732,1244.1,531.7
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,7,2026-06-02 17:48:13.444732,1339.89,485.01
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,8,2027-06-02 17:48:13.444732,1695.48,698.12
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,9,2028-06-01 17:48:13.444732,1644.15,504.31
+BP4,Calcium Channel Blockers,Hypertension,Calcium Channel Blockers,10,2029-06-01 17:48:13.444732,2061.17,778.85
+BP5,Beta Blockers,Hypertension,Beta Blockers,1,2020-06-03 17:48:13.444732,52.03,52.03
+BP5,Beta Blockers,Hypertension,Beta Blockers,2,2021-06-03 17:48:13.444732,84.67,44.27
+BP5,Beta Blockers,Hypertension,Beta Blockers,3,2022-06-03 17:48:13.444732,176.6,95.8
+BP5,Beta Blockers,Hypertension,Beta Blockers,4,2023-06-03 17:48:13.444732,195.02,73.82
+BP5,Beta Blockers,Hypertension,Beta Blockers,5,2024-06-02 17:48:13.444732,259.52,97.92
+BP5,Beta Blockers,Hypertension,Beta Blockers,6,2025-06-02 17:48:13.444732,286.67,84.67
+BP5,Beta Blockers,Hypertension,Beta Blockers,7,2026-06-02 17:48:13.444732,342.3,99.9
+BP5,Beta Blockers,Hypertension,Beta Blockers,8,2027-06-02 17:48:13.444732,414.82,132.02
+BP5,Beta Blockers,Hypertension,Beta Blockers,9,2028-06-01 17:48:13.444732,435.58,112.38
+BP5,Beta Blockers,Hypertension,Beta Blockers,10,2029-06-01 17:48:13.444732,471.08,107.48
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,1,2020-06-03 17:48:13.444732,39.63,39.63
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,2,2021-06-03 17:48:13.444732,101.5,63.67
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,3,2022-06-03 17:48:13.444732,167.43,91.78
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,4,2023-06-03 17:48:13.444732,169.68,56.2
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,5,2024-06-02 17:48:13.444732,262.06,110.76
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,6,2025-06-02 17:48:13.444732,248.34,59.22
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,7,2026-06-02 17:48:13.444732,351.86,124.92
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,8,2027-06-02 17:48:13.444732,450.4,185.63
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,9,2028-06-01 17:48:13.444732,378.02,75.43
+LDL1,Simvastatin ,Hypercholesterolemia,Simvastatin ,10,2029-06-01 17:48:13.444732,473.59,133.17
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,1,2020-06-03 17:48:13.444732,70.19,70.19
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,2,2021-06-03 17:48:13.444732,133.66,83.26
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,3,2022-06-03 17:48:13.444732,168.78,67.98
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,4,2023-06-03 17:48:13.444732,249.16,97.96
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,5,2024-06-02 17:48:13.444732,294.47,92.87
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,6,2025-06-02 17:48:13.444732,409.65,157.65
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,7,2026-06-02 17:48:13.444732,474.59,172.19
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,8,2027-06-02 17:48:13.444732,553.94,201.14
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,9,2028-06-01 17:48:13.444732,602.62,199.42
+LDL2,Atorvastatin,Hypercholesterolemia,Atorvastatin,10,2029-06-01 17:48:13.444732,722.64,269.04
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,1,2020-06-03 17:48:13.444732,84.61,84.61
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,2,2021-06-03 17:48:13.444732,136.25,73.45
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,3,2022-06-03 17:48:13.444732,267.59,141.99
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,4,2023-06-03 17:48:13.444732,360.75,172.35
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,5,2024-06-02 17:48:13.444732,400.1,148.9
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,6,2025-06-02 17:48:13.444732,411.5,97.5
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,7,2026-06-02 17:48:13.444732,479.5,102.7
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,8,2027-06-02 17:48:13.444732,689.96,250.36
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,9,2028-06-01 17:48:13.444732,603.2,100.8
+LDL3,Rosuvastatin,Hypercholesterolemia,Rosuvastatin,10,2029-06-01 17:48:13.444732,861.43,296.23
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,1,2020-06-03 17:48:13.444732,10.81,10.81
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,2,2021-06-03 17:48:13.444732,29.6,19.2
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,3,2022-06-03 17:48:13.444732,31.59,10.79
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,4,2023-06-03 17:48:13.444732,43.5,12.3
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,5,2024-06-02 17:48:13.444732,53.73,12.13
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,6,2025-06-02 17:48:13.444732,75.69,23.69
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,7,2026-06-02 17:48:13.444732,102.0,39.6
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,8,2027-06-02 17:48:13.444732,114.69,41.89
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,9,2028-06-01 17:48:13.444732,138.71,55.51
+LDL4,Ezetimibe,Hypercholesterolemia,Ezetimibe,10,2029-06-01 17:48:13.444732,119.71,26.11
+LDL5,Repatha,Hypercholesterolemia,Repatha,1,2020-06-03 17:48:13.444732,20.92,20.92
+LDL5,Repatha,Hypercholesterolemia,Repatha,2,2021-06-03 17:48:13.444732,32.98,18.1
+LDL5,Repatha,Hypercholesterolemia,Repatha,3,2022-06-03 17:48:13.444732,48.21,18.45
+LDL5,Repatha,Hypercholesterolemia,Repatha,4,2023-06-03 17:48:13.444732,70.55,25.91
+LDL5,Repatha,Hypercholesterolemia,Repatha,5,2024-06-02 17:48:13.444732,80.14,20.62
+LDL5,Repatha,Hypercholesterolemia,Repatha,6,2025-06-02 17:48:13.444732,125.07,50.67
+LDL5,Repatha,Hypercholesterolemia,Repatha,7,2026-06-02 17:48:13.444732,119.02,29.74
+LDL5,Repatha,Hypercholesterolemia,Repatha,8,2027-06-02 17:48:13.444732,147.06,42.9
+LDL5,Repatha,Hypercholesterolemia,Repatha,9,2028-06-01 17:48:13.444732,195.7,76.66
+LDL5,Repatha,Hypercholesterolemia,Repatha,10,2029-06-01 17:48:13.444732,155.13,21.21
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,1,2020-06-03 17:48:13.444732,20.18,20.18
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,2,2021-06-03 17:48:13.444732,39.21,24.49
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,3,2022-06-03 17:48:13.444732,49.69,20.25
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,4,2023-06-03 17:48:13.444732,80.06,35.9
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,5,2024-06-02 17:48:13.444732,96.35,37.47
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,6,2025-06-02 17:48:13.444732,117.65,44.05
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,7,2026-06-02 17:48:13.444732,143.87,55.55
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,8,2027-06-02 17:48:13.444732,134.99,31.95
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,9,2028-06-01 17:48:13.444732,177.31,59.55
+LDL6,Inclisiran,Hypercholesterolemia,Inclisiran,10,2029-06-01 17:48:13.444732,148.45,15.97
