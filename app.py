@@ -649,7 +649,7 @@ def main_app():
                 st.markdown("---")
                 batch_reason = st.text_area("Batch Transfer Reason:", placeholder="e.g., Department restructuring, Grant requirements...")
                 
-                if st.button("🚀 Execute Batch Transfer", type="primary"):
+                if st.button("Execute Batch Transfer", type="primary"):
                     if from_owner and to_owner and transfer_count > 0:
                         # Simulate batch transfer
                         progress_bar = st.progress(0)
