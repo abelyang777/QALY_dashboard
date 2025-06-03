@@ -12,7 +12,7 @@ import os
 # Page configuration
 st.set_page_config(
     page_title="QALY NFT Management Platform",
-    page_icon="🏥",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -131,16 +131,16 @@ def main_app():
     else:
         page = st.sidebar.selectbox(
             "Navigate to:",
-            ["🏠 Overview", "📊 Program Dashboard", "🎫 NFT Management", "🔄 Transfer NFTs"],
+            ["Overview", "Program Dashboard", "NFT Management", "Transfer NFTs"],
             index=0
         )
 
         # Main content based on page selection
-        if page == "🏠 Overview":
+        if page == "Overview":
             # Header
             st.markdown("""
             <div class='main-header'>
-                <h1>🏥 QALY NFT Management Platform</h1>
+                <h1>QALY NFT Management Platform</h1>
                 <p>Quality-Adjusted Life Years from Risk Reduction Programs</p>
             </div>
             """, unsafe_allow_html=True)
@@ -186,7 +186,7 @@ def main_app():
             col1, col2 = st.columns(2)
             
             with col1:
-                st.subheader("📈 QALY Distribution by Disease")
+                st.subheader("QALY Attribution")
                 
                 # Create disease summary for the main pie chart
                 disease_summary = qaly_df.groupby('Disease')[['Tot QALY Gain','Patient']].sum().reset_index()
@@ -194,11 +194,11 @@ def main_app():
                 # Add drill-down controls
                 drill_down_option = st.radio(
                     "View Options:",
-                    ["Disease Overview", "Drill Down by Disease"],
+                    ["By Disease", "By Treatment"],
                     horizontal=True
                 )
                 
-                if drill_down_option == "Disease Overview":
+                if drill_down_option == "By Disease":
                     # Main pie chart showing diseases
                     fig = px.pie(
                         disease_summary, 
@@ -235,7 +235,7 @@ def main_app():
                     st.plotly_chart(fig, use_container_width=True)
 
             with col2:
-                st.subheader("💰 Cost-Effectiveness Analysis")
+                st.subheader("Cost-Effectiveness Analysis")
                 import numpy as np
                 #qaly_df['Cost per QALY_log2'] = np.log2(qaly_df['Cost per QALY'])
                 fig = px.scatter(
@@ -250,10 +250,10 @@ def main_app():
                 )
                 st.plotly_chart(fig, use_container_width=True)
 
-        elif page == "📊 Program Dashboard":
+        elif page == "Program Dashboard":
             st.markdown("""
             <div class='main-header'>
-                <h1>📊 Program Dashboard</h1>
+                <h1>Program Dashboard</h1>
                 <p>Comprehensive analysis of disease risk reduction programs</p>
             </div>
             """, unsafe_allow_html=True)
@@ -288,7 +288,7 @@ def main_app():
             ]
             
             # Tabs for different views
-            tab1, tab2, tab3, tab4 = st.tabs(["📈 Time Series", "🗺️ Program Map", "💡 Bubble Analysis", "📋 Data Table"])
+            tab1, tab2, tab3, tab4 = st.tabs(["Time Series", "Program Map", "Bubble Analysis", "Data Table"])
             with tab1:
                 st.subheader("QALY Accrual Over Time")
                 
@@ -386,10 +386,10 @@ def main_app():
                     }
                 )
 
-        elif page == "🎫 NFT Management":
+        elif page == "NFT Management":
             st.markdown("""
             <div class='main-header'>
-                <h1>🎫 NFT Management Dashboard</h1>
+                <h1>NFT Management Dashboard</h1>
                 <p>Each NFT represents a single QALY from risk reduction programs</p>
             </div>
             """, unsafe_allow_html=True)
@@ -414,7 +414,7 @@ def main_app():
                 st.metric("Total Transfers", f"{total_transfers:,}")
             
             # NFT Management tabs
-            tab1, tab2, tab3, tab4 = st.tabs(["🏠 NFT Overview", "👥 Ownership", "📊 Analytics", "🔍 NFT Details"])
+            tab1, tab2, tab3, tab4 = st.tabs(["NFT Overview", "Ownership", "Analytics", "NFT Details"])
             
             with tab1:
                 col1, col2 = st.columns(2)
@@ -551,10 +551,10 @@ def main_app():
                     }
                 )
 
-        elif page == "🔄 Transfer NFTs":
+        elif page == "Transfer NFTs":
             st.markdown("""
             <div class='main-header'>
-                <h1>🔄 NFT Transfer Center</h1>
+                <h1>NFT Transfer Center</h1>
                 <p>Transfer NFTs between owners with full audit trail</p>
             </div>
             """, unsafe_allow_html=True)
@@ -592,10 +592,10 @@ def main_app():
                     new_owner = st.selectbox("Transfer to:", available_recipients if 'nft_details' in locals() else all_owners, key="new_owner")
                     transfer_reason = st.text_area("Transfer Reason (optional):", placeholder="e.g., Hospital merger, Research collaboration...")
                     
-                    if st.button("🚀 Execute Transfer", type="primary"):
+                    if st.button("Execute Transfer", type="primary"):
                         if selected_nft and new_owner:
                             # Simulate transfer
-                            st.success(f"✅ Successfully transferred {selected_nft} from {current_owner} to {new_owner}")
+                            st.success(f"Successfully transferred {selected_nft} from {current_owner} to {new_owner}")
                             st.balloons()
                             
                             # Show transfer confirmation
@@ -659,7 +659,7 @@ def main_app():
                             progress_bar.progress((i + 1) / transfer_count)
                             status_text.text(f'Transferring NFT {i + 1} of {transfer_count}...')
                         
-                        st.success(f"✅ Successfully transferred {transfer_count} NFTs from {from_owner} to {to_owner}")
+                        st.success(f"Successfully transferred {transfer_count} NFTs from {from_owner} to {to_owner}")
                         st.balloons()
                         
                         # Show batch transfer summary
@@ -678,7 +678,7 @@ def main_app():
                 
                 # Transfer history visualization
                 st.markdown("---")
-                st.subheader("📈 Transfer Activity Visualization")
+                st.subheader("Transfer Activity Visualization")
                 
                 # Simulate some transfer history data for visualization
                 transfer_history = []
@@ -746,7 +746,7 @@ def login_function():
                 st.session_state["page"] = PASSWORD_HASH_MAP[hashed_pw]
                 st.rerun()
             else:
-                st.error("❌ Invalid password")
+                st.error("Invalid password")
 
     # ----- App Entry -----
     if "authenticated" not in st.session_state:
@@ -772,7 +772,7 @@ if __name__ == '__main__':
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #666; padding: 1rem;'>
-    <p>🏥 QALY NFT Management Platform</p>
+    <p>QALY NFT Management Platform</p>
     <p><em>This is a demonstration application for managing Quality-Adjusted Life Years as NFTs</em></p>
 </div>
 """, unsafe_allow_html=True)
