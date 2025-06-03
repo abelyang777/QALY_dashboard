@@ -72,14 +72,24 @@ def generate_time_series_data():
 # Load data
 qaly_df = load_qaly_data()
 qaly_df['Cost per QALY'] = qaly_df['Cost'] / qaly_df['Avg QALY Gain']
+if 'qaly_df' not in st.session_state:
+    st.session_state.qaly_df = qaly_df
+
 nft_df = generate_nft_ledger()
 nft_df['mint_date'] = pd.to_datetime(nft_df['mint_date'], errors='coerce')
+if 'nft_df' not in st.session_state:
+    st.session_state.nft_df = nft_df
+
 time_series_df = generate_time_series_data()
+if 'time_series_df' not in st.session_state:
+    st.session_state.time_series_df = time_series_df
+
+
 
 # Sidebar navigation
 st.sidebar.markdown("""
 <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;'>
-    <h2 style='color: white; text-align: center; margin: 0;'>🏥 QALY NFT Platform</h2>
+    <h2 style='color: white; text-align: center; margin: 0;'>QALY NFT Platform</h2>
 </div>
 """, unsafe_allow_html=True)
 
@@ -137,118 +147,8 @@ def main_app():
 
         # Main content based on page selection
         if page == "Overview":
-            # Header
-            st.markdown("""
-            <div class='main-header'>
-                <h1>QALY NFT Management Platform</h1>
-                <p>Quality-Adjusted Life Years from Risk Reduction Programs</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Key metrics
-            col1, col2, col3, col4 = st.columns(4)
-            
-            with col1:
-                total_qaly = qaly_df['Tot QALY Gain'].sum()
-                st.metric(
-                    label="Total QALYs Generated",
-                    value=f"{total_qaly:,}",
-                    #delta=f"+{random.randint(100, 500)} this month"
-                )
-            
-            with col2:
-                total_nfts = len(nft_df)
-                st.metric(
-                    label="Total NFTs Minted",
-                    value=f"{total_nfts:,}",
-                    #delta=f"+{random.randint(50, 200)} this week"
-                )
-            
-            with col3:
-                active_programs = len(qaly_df)
-                st.metric(
-                    label="Active Programs",
-                    value=active_programs,
-                    #delta="2 new programs"
-                )
-            
-            with col4:
-                avg_cost_effectiveness = qaly_df['Cost per QALY'].mean()
-                st.metric(
-                    label="Avg Cost per QALY",
-                    value=f"${avg_cost_effectiveness:.0f}",
-                    #delta="-5% improvement"
-                )
-            
-            st.markdown("---")
-            
-            # Overview charts
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                st.subheader("QALY Attribution")
-                
-                # Create disease summary for the main pie chart
-                disease_summary = qaly_df.groupby('Disease')[['Tot QALY Gain','Patient']].sum().reset_index()
-                
-                # Add drill-down controls
-                drill_down_option = st.radio(
-                    "View Options:",
-                    ["By Disease", "By Treatment"],
-                    horizontal=True
-                )
-                
-                if drill_down_option == "By Disease":
-                    # Main pie chart showing diseases
-                    fig = px.pie(
-                        disease_summary, 
-                        values='Tot QALY Gain', 
-                        names='Disease',
-                        hover_data = 'Patient',
-                        color_discrete_sequence=px.colors.qualitative.Set3,
-                        title="Total QALYs by Disease Category"
-                    )
-                    fig.update_traces(textposition='inside', textinfo='percent+label')
-                    st.plotly_chart(fig, use_container_width=True)
-                    
-                else:
-                    # Drill-down section
-                    selected_disease = st.selectbox(
-                        "Select a disease to drill down:",
-                        options=disease_summary['Disease'].tolist(),
-                        index=0
-                    )
-                    
-                    # Filter data for selected disease
-                    filtered_data = qaly_df[qaly_df['Disease'] == selected_disease]
-                    
-                    # Create drill-down pie chart
-                    fig = px.pie(
-                        filtered_data,
-                        values='Tot QALY Gain',
-                        names='Intervention',
-                        hover_data = 'Patient',
-                        color_discrete_sequence=px.colors.qualitative.Pastel,
-                        title=f"QALY Distribution for {selected_disease} Interventions"
-                    )
-                    fig.update_traces(textposition='inside', textinfo='percent+label')
-                    st.plotly_chart(fig, use_container_width=True)
-
-            with col2:
-                st.subheader("Cost-Effectiveness Analysis")
-                import numpy as np
-                #qaly_df['Cost per QALY_log2'] = np.log2(qaly_df['Cost per QALY'])
-                fig = px.scatter(
-                    qaly_df,
-                    x='Avg QALY Gain',
-                    y='Cost per QALY',
-                    size='Tot QALY Gain',
-                    color='Disease',
-                    hover_name='Intervention',
-                    title="Cost per QALY vs Per Person QALY Gain",
-                    labels={'Cost per QALY': 'Cost per QALY ($)', 'Tot QALY Gain': 'Total QALY Gain'}
-                )
-                st.plotly_chart(fig, use_container_width=True)
+            from overview import render
+            render()
 
         elif page == "Program Dashboard":
             st.markdown("""
@@ -712,58 +612,6 @@ def main_app():
                 fig.update_layout(height=400, showlegend=False, title_text="Recent Transfer Activity")
                 st.plotly_chart(fig, use_container_width=True)
 
-
-import urllib.parse
-import json
-import hashlib
-
-import streamlit as st
-import hashlib
-def login_function():
-    # ----- Configuration -----
-    # Map passwords to page names
-    PASSWORD_PAGE_MAP = {
-        "dash": "main_app",
-        "issue": "issue",
-    }
-
-    # Optional: store hashed passwords for security
-    def hash_password(password):
-        return hashlib.sha256(password.encode()).hexdigest()
-
-    # Hashed password map
-    PASSWORD_HASH_MAP = {hash_password(pw): page for pw, page in PASSWORD_PAGE_MAP.items()}
-
-    # ----- Login UI -----
-    def login():
-        st.title("🔐 QALY System Login (issue or dash)")
-        password = st.text_input("Password", type="password")
-
-        if st.button("Login"):
-            hashed_pw = hash_password(password)
-            if hashed_pw in PASSWORD_HASH_MAP:
-                st.session_state["authenticated"] = True
-                st.session_state["page"] = PASSWORD_HASH_MAP[hashed_pw]
-                st.rerun()
-            else:
-                st.error("Invalid password")
-
-    # ----- App Entry -----
-    if "authenticated" not in st.session_state:
-        st.session_state["authenticated"] = False
-
-    if st.session_state["authenticated"]:
-        page = st.session_state.get("page", "")
-        if page == "main_app":
-            main_app()
-        elif page == "issue":
-            from markov_streamlit import render
-            render()
-        else:
-            st.error("Unknown page. Please log in again.")
-            st.session_state["authenticated"] = False
-    else:
-        login()
         
 if __name__ == '__main__':
     main_app()
