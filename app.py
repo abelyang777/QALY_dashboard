@@ -150,6 +150,10 @@ def main_app():
 
         initialize_session_state(dataset)
 
+        qaly_df = st.session_state.qaly_df
+        nft_df = st.session_state.nft_df
+        time_series_df = st.session_state.time_series_df
+
         page = st.sidebar.selectbox(
             "Navigate to:",
             ["Overview", "Program Dashboard", "NFT Management", "Transfer NFTs"],
