@@ -1,0 +1,7 @@
+Program ID,Program Name,Disease,Intervention,Patient,Survival Pop,Avg QALY Gain,Tot QALY Gain,Cost
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,1000,950,0.8,760,50
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,800,770,0.9,720,40
+ST3,Complementary Feeding,Stunting,Complementary Feeding,1200,1150,1.1,1265,80
+HIV1,ART,HIV,ART,1500,1400,5.5,7700,200
+HIV2,PMTCT,HIV,PMTCT,500,490,3.5,1750,150
+HIV3,PrEP,HIV,PrEP,700,680,2.2,1540,100

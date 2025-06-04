@@ -55,34 +55,35 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
 # Data loading and processing
-def load_qaly_data():
-    df = pd.read_csv("QALY_data.csv")
+def load_qaly_data(dataset):
+    df = pd.read_csv(dataset + "QALY_data.csv")
     return df
 
-def generate_nft_ledger():
-    df = pd.read_csv("nft_ledger.csv")
+def generate_nft_ledger(dataset):
+    df = pd.read_csv(dataset + "nft_ledger.csv")
     df.loc[:, 'mint_date'] = pd.to_datetime(df['mint_date'], errors='coerce')
     return df
 
-def generate_time_series_data():
-    df = pd.read_csv("time_series_data.csv")
+def generate_time_series_data(dataset):
+    df = pd.read_csv(dataset + "time_series_data.csv")
     return df
 
-# Load data
-qaly_df = load_qaly_data()
-qaly_df['Cost per QALY'] = qaly_df['Cost'] / qaly_df['Avg QALY Gain']
-if 'qaly_df' not in st.session_state:
-    st.session_state.qaly_df = qaly_df
+def initialize_session_state(dataset):
+    qaly_df = load_qaly_data(dataset)
+    qaly_df['Cost per QALY'] = qaly_df['Cost'] / qaly_df['Avg QALY Gain']
+    if 'qaly_df' not in st.session_state:
+        st.session_state.qaly_df = qaly_df
 
-nft_df = generate_nft_ledger()
-nft_df['mint_date'] = pd.to_datetime(nft_df['mint_date'], errors='coerce')
-if 'nft_df' not in st.session_state:
-    st.session_state.nft_df = nft_df
+    nft_df = generate_nft_ledger(dataset)
+    nft_df['mint_date'] = pd.to_datetime(nft_df['mint_date'], errors='coerce')
+    if 'nft_df' not in st.session_state:
+        st.session_state.nft_df = nft_df
 
-time_series_df = generate_time_series_data()
-if 'time_series_df' not in st.session_state:
-    st.session_state.time_series_df = time_series_df
+    time_series_df = generate_time_series_data(dataset)
+    if 'time_series_df' not in st.session_state:
+        st.session_state.time_series_df = time_series_df
 
 
 
@@ -138,7 +139,16 @@ def main_app():
         except Exception as e:
             st.error(f"Failed to parse data: {e}")
 
+
     else:
+
+        if "dataset" in query_params:
+            dataset = query_params["dataset"] + "_"
+        else:
+            dataset = ""
+
+        initialize_session_state(dataset)
+
         page = st.sidebar.selectbox(
             "Navigate to:",
             ["Overview", "Program Dashboard", "NFT Management", "Transfer NFTs"],

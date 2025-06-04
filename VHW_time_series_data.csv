@@ -1,0 +1,61 @@
+Program ID,Program Name,Disease,Intervention,Year,Date,Cumulative QALYs,Annual QALYs
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,1,2020-06-05 11:31:58.233424,75.3,75.3
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,2,2021-06-05 11:31:58.233424,129.65,68.85
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,3,2022-06-05 11:31:58.233424,259.81,138.21
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,4,2023-06-05 11:31:58.233424,321.16,138.76
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,5,2024-06-04 11:31:58.233424,322.33,79.13
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,6,2025-06-04 11:31:58.233424,472.11,168.11
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,7,2026-06-04 11:31:58.233424,561.53,196.73
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,8,2027-06-04 11:31:58.233424,635.69,210.09
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,9,2028-06-03 11:31:58.233424,720.11,233.71
+ST1,Micronutrient Supplementation,Stunting,Micronutrient Supplementation,10,2029-06-03 11:31:58.233424,870.45,323.25
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,1,2020-06-05 11:31:58.233424,72.58,72.58
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,2,2021-06-05 11:31:58.233424,172.38,114.78
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,3,2022-06-05 11:31:58.233424,177.35,62.15
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,4,2023-06-05 11:31:58.233424,323.77,150.97
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,5,2024-06-04 11:31:58.233424,305.94,75.54
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,6,2025-06-04 11:31:58.233424,479.35,191.35
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,7,2026-06-04 11:31:58.233424,497.13,151.53
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,8,2027-06-04 11:31:58.233424,641.78,238.58
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,9,2028-06-03 11:31:58.233424,763.34,302.54
+ST2,Nutrition Counselling,Stunting,Nutrition Counselling,10,2029-06-03 11:31:58.233424,599.82,81.42
+ST3,Complementary Feeding,Stunting,Complementary Feeding,1,2020-06-05 11:31:58.234424,143.9,143.9
+ST3,Complementary Feeding,Stunting,Complementary Feeding,2,2021-06-05 11:31:58.234424,287.82,186.62
+ST3,Complementary Feeding,Stunting,Complementary Feeding,3,2022-06-05 11:31:58.234424,400.76,198.36
+ST3,Complementary Feeding,Stunting,Complementary Feeding,4,2023-06-05 11:31:58.234424,420.98,117.38
+ST3,Complementary Feeding,Stunting,Complementary Feeding,5,2024-06-04 11:31:58.234424,665.81,261.01
+ST3,Complementary Feeding,Stunting,Complementary Feeding,6,2025-06-04 11:31:58.234424,700.72,194.72
+ST3,Complementary Feeding,Stunting,Complementary Feeding,7,2026-06-04 11:31:58.234424,1027.06,419.86
+ST3,Complementary Feeding,Stunting,Complementary Feeding,8,2027-06-04 11:31:58.234424,861.29,152.89
+ST3,Complementary Feeding,Stunting,Complementary Feeding,9,2028-06-03 11:31:58.234424,1188.56,378.96
+ST3,Complementary Feeding,Stunting,Complementary Feeding,10,2029-06-03 11:31:58.234424,1293.83,383.03
+HIV1,ART,HIV,ART,1,2020-06-05 11:31:58.234424,809.3,809.3
+HIV1,ART,HIV,ART,2,2021-06-05 11:31:58.234424,1548.29,932.29
+HIV1,ART,HIV,ART,3,2022-06-05 11:31:58.234424,1954.24,722.24
+HIV1,ART,HIV,ART,4,2023-06-05 11:31:58.234424,2581.87,733.87
+HIV1,ART,HIV,ART,5,2024-06-04 11:31:58.234424,3122.41,658.41
+HIV1,ART,HIV,ART,6,2025-06-04 11:31:58.234424,5385.04,2305.04
+HIV1,ART,HIV,ART,7,2026-06-04 11:31:58.234424,4739.52,1043.52
+HIV1,ART,HIV,ART,8,2027-06-04 11:31:58.234424,6759.45,2447.45
+HIV1,ART,HIV,ART,9,2028-06-03 11:31:58.234424,6830.81,1902.81
+HIV1,ART,HIV,ART,10,2029-06-03 11:31:58.234424,6852.18,1308.18
+HIV2,PMTCT,HIV,PMTCT,1,2020-06-05 11:31:58.234424,149.58,149.58
+HIV2,PMTCT,HIV,PMTCT,2,2021-06-05 11:31:58.234424,282.87,142.87
+HIV2,PMTCT,HIV,PMTCT,3,2022-06-05 11:31:58.234424,431.78,151.78
+HIV2,PMTCT,HIV,PMTCT,4,2023-06-05 11:31:58.234424,803.93,383.93
+HIV2,PMTCT,HIV,PMTCT,5,2024-06-04 11:31:58.234424,1009.56,449.56
+HIV2,PMTCT,HIV,PMTCT,6,2025-06-04 11:31:58.234424,885.78,185.78
+HIV2,PMTCT,HIV,PMTCT,7,2026-06-04 11:31:58.234424,1286.3,446.3
+HIV2,PMTCT,HIV,PMTCT,8,2027-06-04 11:31:58.234424,1130.6,150.6
+HIV2,PMTCT,HIV,PMTCT,9,2028-06-03 11:31:58.234424,1873.57,753.57
+HIV2,PMTCT,HIV,PMTCT,10,2029-06-03 11:31:58.234424,1654.69,394.69
+HIV3,PrEP,HIV,PrEP,1,2020-06-05 11:31:58.234424,175.08,175.08
+HIV3,PrEP,HIV,PrEP,2,2021-06-05 11:31:58.234424,322.7,199.5
+HIV3,PrEP,HIV,PrEP,3,2022-06-05 11:31:58.234424,538.82,292.42
+HIV3,PrEP,HIV,PrEP,4,2023-06-05 11:31:58.234424,719.81,350.21
+HIV3,PrEP,HIV,PrEP,5,2024-06-04 11:31:58.234424,647.29,154.49
+HIV3,PrEP,HIV,PrEP,6,2025-06-04 11:31:58.234424,746.52,130.52
+HIV3,PrEP,HIV,PrEP,7,2026-06-04 11:31:58.234424,903.16,163.96
+HIV3,PrEP,HIV,PrEP,8,2027-06-04 11:31:58.234424,1441.16,578.76
+HIV3,PrEP,HIV,PrEP,9,2028-06-03 11:31:58.234424,1644.52,658.92
+HIV3,PrEP,HIV,PrEP,10,2029-06-03 11:31:58.234424,1745.97,637.17
