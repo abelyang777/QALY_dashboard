@@ -146,6 +146,7 @@ def main_app():
             dataset = query_params["dataset"] + "_"
         else:
             dataset = ""
+        st.session_state.dataset = dataset
 
         initialize_session_state(dataset)
 

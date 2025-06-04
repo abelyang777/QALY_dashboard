@@ -40,6 +40,7 @@ def show_references_from_dict(references: dict, section_title: str = "References
 
 
 def render():
+    dataset = st.session_state.dataset
     qaly_df = st.session_state.qaly_df
     nft_df = st.session_state.nft_df
     time_series_df = st.session_state.time_series_df
@@ -238,6 +239,6 @@ def render():
         st.plotly_chart(fig2, use_container_width=True)
 
     import json
-    f = open("references.json","r", encoding = 'utf-8-sig')
+    f = open(dataset + "references.json","r", encoding = 'utf-8-sig')
     references = json.load(f)
     show_references_from_dict(references)
