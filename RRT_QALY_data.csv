@@ -1,0 +1,7 @@
+Program ID,Program Name,Disease,Intervention,Patient,Survival Pop,Avg QALY Gain,Tot QALY Gain,Cost
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,800,720,2.5,2000,90000
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,600,555,2.8,1680,95000
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,400,380,3.2,1280,85000
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,300,285,3.6,1026,88000
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,500,470,2.7,1350,70000
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,350,330,2.9,1015,74000

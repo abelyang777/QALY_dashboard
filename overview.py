@@ -188,7 +188,7 @@ def render():
                 size='Tot QALY Gain',
                 color='Disease',
                 color_discrete_map=disease_colors,
-                hover_name='Intervention',
+                hover_name='Program Name',
                 hover_data={'Patient': ':,', 'Cost': ':$,'},
                 title="Cost per QALY vs Average QALY Gain (by Disease)",
                 labels={
@@ -209,7 +209,7 @@ def render():
                 size='Tot QALY Gain',
                 color='Intervention',
                 color_discrete_map=intervention_colors,
-                hover_name='Intervention',
+                hover_name='Program Name',
                 hover_data={'Patient': ':,', 'Cost': ':$,'},
                 title=f"Cost-Effectiveness: {selected_disease} Interventions",
                 labels={

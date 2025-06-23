@@ -1,0 +1,61 @@
+Program ID,Program Name,Disease,Intervention,Year,Date,Cumulative QALYs,Annual QALYs
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,1,2020-06-24 19:02:23.983511,220.17,220.17
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,2,2021-06-24 19:02:23.983511,356.63,196.63
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,3,2022-06-24 19:02:23.983511,653.47,333.47
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,4,2023-06-24 19:02:23.983511,777.72,297.72
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,5,2024-06-23 19:02:23.983511,994.08,354.08
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,6,2025-06-23 19:02:23.983511,1156.62,356.62
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,7,2026-06-23 19:02:23.983511,1487.32,527.32
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,8,2027-06-23 19:02:23.983511,1909.25,789.25
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,9,2028-06-22 19:02:23.983511,1837.73,557.73
+HD1,Standard In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,10,2029-06-22 19:02:23.983511,2380.28,940.28
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,1,2020-06-24 19:02:23.997523,183.27,183.27
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,2,2021-06-24 19:02:23.997523,340.79,206.39
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,3,2022-06-24 19:02:23.997523,404.39,135.59
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,4,2023-06-24 19:02:23.997523,737.62,334.42
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,5,2024-06-23 19:02:23.997523,744.59,206.99
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,6,2025-06-23 19:02:23.997523,961.02,289.02
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,7,2026-06-23 19:02:23.997523,1129.02,322.62
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,8,2027-06-23 19:02:23.997523,1206.37,265.57
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,9,2028-06-22 19:02:23.997523,1799.96,724.76
+HD2,High-Flux In-Center HD,End-Stage Renal Disease,In-Center Hemodialysis,10,2029-06-22 19:02:23.997523,1430.11,220.51
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,1,2020-06-24 19:02:23.997523,130.26,130.26
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,2,2021-06-24 19:02:23.997523,266.34,163.94
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,3,2022-06-24 19:02:23.997523,335.23,130.43
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,4,2023-06-24 19:02:23.997523,599.73,292.53
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,5,2024-06-23 19:02:23.997523,585.98,176.38
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,6,2025-06-23 19:02:23.997523,721.45,209.45
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,7,2026-06-23 19:02:23.997523,1000.84,386.44
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,8,2027-06-23 19:02:23.997523,1149.9,433.1
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,9,2028-06-22 19:02:23.997523,1195.33,376.13
+HH1,Conventional Home HD,End-Stage Renal Disease,Home Hemodialysis,10,2029-06-22 19:02:23.997523,1151.15,229.55
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,1,2020-06-24 19:02:23.997523,97.73,97.73
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,2,2021-06-24 19:02:23.997523,199.28,117.2
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,3,2022-06-24 19:02:23.997523,313.14,148.98
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,4,2023-06-24 19:02:23.997523,364.39,118.15
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,5,2024-06-23 19:02:23.997523,496.04,167.72
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,6,2025-06-23 19:02:23.997523,623.86,213.46
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,7,2026-06-23 19:02:23.997523,620.14,127.66
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,8,2027-06-23 19:02:23.997523,686.91,112.35
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,9,2028-06-22 19:02:23.997523,951.81,295.17
+HH2,Daily Home HD,End-Stage Renal Disease,Home Hemodialysis,10,2029-06-22 19:02:23.997523,974.51,235.79
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,1,2020-06-24 19:02:23.997523,136.89,136.89
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,2,2021-06-24 19:02:23.997523,255.92,147.92
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,3,2022-06-24 19:02:23.997523,382.85,166.85
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,4,2023-06-24 19:02:23.997523,451.75,127.75
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,5,2024-06-23 19:02:23.997523,771.01,339.01
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,6,2025-06-23 19:02:23.997523,848.95,308.95
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,7,2026-06-23 19:02:23.997523,874.66,226.66
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,8,2027-06-23 19:02:23.997523,917.16,161.16
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,9,2028-06-22 19:02:23.997523,1162.03,298.03
+PD1,Continuous Ambulatory Peritoneal Dialysis,End-Stage Renal Disease,Peritoneal Dialysis,10,2029-06-22 19:02:23.997523,1515.78,543.78
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,1,2020-06-24 19:02:23.997523,96.24,96.24
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,2,2021-06-24 19:02:23.997523,195.34,114.14
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,3,2022-06-24 19:02:23.997523,360.49,198.09
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,4,2023-06-24 19:02:23.997523,391.15,147.55
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,5,2024-06-23 19:02:23.997523,506.25,181.45
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,6,2025-06-23 19:02:23.997523,515.98,109.98
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,7,2026-06-23 19:02:23.997523,643.36,156.16
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,8,2027-06-23 19:02:23.997523,888.7,320.3
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,9,2028-06-22 19:02:23.997523,875.94,226.34
+PD2,Automated Peritoneal Dialysis (APD),End-Stage Renal Disease,Peritoneal Dialysis,10,2029-06-22 19:02:23.997523,1049.64,318.84
