@@ -8,6 +8,7 @@ import random
 from datetime import datetime, timedelta
 import uuid
 import os
+import urllib
 
 # Page configuration
 st.set_page_config(
