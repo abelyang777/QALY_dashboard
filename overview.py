@@ -2,49 +2,17 @@ import streamlit as st
 import plotly.express as px
 import numpy as np
 
-def create_intervention_color_map(qaly_df):
-    """Create a professional color mapping for interventions (avoiding pink/purple)"""
-    
-    unique_interventions = np.unique(
-        np.concatenate([qaly_df['Intervention'].unique(), qaly_df['Disease'].unique()])
-    )
-    
-    # Professional, varied palette (manually curated)
-    professional_colors = [
-        '#1f77b4',  # muted blue
-        '#2ca02c',  # green
-        '#ff7f0e',  # orange
-        '#8c564b',  # brown
-        '#7f7f7f',  # gray
-        '#17becf',  # teal/cyan
-        '#bcbd22',  # olive
-        '#aec7e8',  # light blue
-        '#98df8a',  # light green
-        '#ffbb78',  # light orange
-        '#9edae5',  # light cyan
-        '#d62728',  # red (use sparingly but accepted in professional charts)
-        '#c49c94',  # beige
-    ]
-        
-    # Map interventions to colors
-    color_map = {}
-    for i, intervention in enumerate(unique_interventions):
-        color_map[intervention] = professional_colors[i % len(professional_colors)]
-    
-    return color_map
-
 def show_references_from_dict(references: dict, section_title: str = "References"):
     with st.expander(section_title):
         for name, link in references.items():
             st.markdown(f"- [{name}]({link})")
-
 
 def render():
     dataset = st.session_state.dataset
     qaly_df = st.session_state.qaly_df
     nft_df = st.session_state.nft_df
     time_series_df = st.session_state.time_series_df
-    color_map = create_intervention_color_map(qaly_df)
+    color_map = st.session_state.color_map
     disease_colors = color_map
     intervention_colors = color_map
 

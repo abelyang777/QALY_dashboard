@@ -23,7 +23,7 @@ st.set_page_config(
 st.markdown("""
 <style>
     .main-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #ffa64d 0%, #e65c00 100%);
         padding: 2rem;
         border-radius: 10px;
         margin-bottom: 2rem;
@@ -58,6 +58,41 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+def create_intervention_color_map(qaly_df):
+    """Create a professional color mapping for interventions (avoiding pink/purple)"""
+    labels = []
+    if 'Intervention' in qaly_df.columns:
+        labels.extend(qaly_df['Intervention'].dropna().unique())
+    if 'Disease' in qaly_df.columns:
+        labels.extend(qaly_df['Disease'].dropna().unique())
+
+    unique_labels = np.unique(labels)
+
+    # Professional, varied palette (manually curated)
+    professional_colors = [
+        '#1f77b4',  # muted blue
+        '#2ca02c',  # green
+        '#ff7f0e',  # orange
+        '#8c564b',  # brown
+        '#7f7f7f',  # gray
+        '#17becf',  # teal/cyan
+        '#bcbd22',  # olive
+        '#aec7e8',  # light blue
+        '#98df8a',  # light green
+        '#ffbb78',  # light orange
+        '#9edae5',  # light cyan
+        '#d62728',  # red (use sparingly but accepted in professional charts)
+        '#c49c94',  # beige
+    ]
+        
+    # Map interventions to colors
+    color_map = {}
+    for i, intervention in enumerate(unique_labels):
+        color_map[intervention] = professional_colors[i % len(professional_colors)]
+    
+    return color_map
+
+
 # Data loading and processing
 def load_qaly_data(dataset):
     df = pd.read_csv(dataset + "QALY_data.csv")
@@ -87,11 +122,15 @@ def initialize_session_state(dataset):
     if 'time_series_df' not in st.session_state:
         st.session_state.time_series_df = time_series_df
 
+    color_map = create_intervention_color_map(qaly_df)
+    if 'color_map' not in st.session_state:
+        st.session_state.color_map = color_map
+
 
 
 # Sidebar navigation
 st.sidebar.markdown("""
-<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;'>
+<div style='background: linear-gradient(135deg, #667eea 0%, #1e3a8a 100%); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;'>
     <h2 style='color: white; text-align: center; margin: 0;'>QALY NFT Platform</h2>
 </div>
 """, unsafe_allow_html=True)
@@ -155,6 +194,8 @@ def main_app():
         qaly_df = st.session_state.qaly_df
         nft_df = st.session_state.nft_df
         time_series_df = st.session_state.time_series_df
+        color_map = st.session_state.color_map
+
 
         page = st.sidebar.selectbox(
             "Navigate to:",
@@ -333,10 +374,12 @@ def main_app():
             # NFT Management tabs
             tab1, tab2, tab3, tab4 = st.tabs(["NFT Overview", "Ownership", "Analytics", "NFT Details"])
             
+
             with tab1:
                 col1, col2 = st.columns(2)
                 
                 with col1:
+
                     st.subheader("NFT Distribution by Disease")
                     disease_nft_count = nft_df.groupby('disease').size().reset_index(name='count')
                     fig = px.bar(
@@ -344,6 +387,7 @@ def main_app():
                         x='disease',
                         y='count',
                         color='disease',
+                        color_discrete_map=color_map,
                         title="NFT Count by Disease Category"
                     )
                     st.plotly_chart(fig, use_container_width=True)
