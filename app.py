@@ -24,7 +24,7 @@ st.markdown("""
 <style>
     .main-header {
         background: linear-gradient(135deg, #ffa64d 0%, #e65c00 100%);
-        padding: 2rem;
+        padding: 0.2rem;
         border-radius: 10px;
         margin-bottom: 2rem;
         text-align: center;
@@ -32,7 +32,7 @@ st.markdown("""
     }
     .metric-card {
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        padding: 1.5rem;
+        padding: 2rem;
         border-radius: 10px;
         margin: 0.5rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
